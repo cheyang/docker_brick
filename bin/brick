@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+#
+# ./brick
+#
+
+
+require 'rubygems'
+$:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+require 'brick'
+require 'brick/cli'
+
+Brick::CLI.run(ARGV, options)
