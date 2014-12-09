@@ -1,6 +1,6 @@
 class Brick
   class CLI
-    class ModelCreate
+    class ModelCreate < CLI
     end
   end
 end
