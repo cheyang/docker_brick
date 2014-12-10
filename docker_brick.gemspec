@@ -21,5 +21,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
   spec.add_dependency "mixlib-cli", "~> 1.3"
-  spec.add_dependency "docker-api"
+  spec.add_dependency "docker-api", "~> 1.17"
 end
