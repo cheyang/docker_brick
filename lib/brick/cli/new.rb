@@ -4,7 +4,7 @@ class Brick
       banner 'brick new MODEL(options)'
       
       def run
-        logger.info "hello, #{banner}"
+        CLI::logger.info "hello, #{banner}"
       end
       
     end
