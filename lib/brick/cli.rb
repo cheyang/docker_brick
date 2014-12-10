@@ -130,5 +130,21 @@ class Brick
     def self.subcommand_category
       @category || snake_case_name.split('_').first unless unnamed?
     end
+    
+    def self.dependency_loaders
+      @dependency_loaders ||= []
+    end
+    
+    def self.deps(&block)
+      dependency_loaders << block
+    end
+    
+     def self.load_deps
+      dependency_loaders.each do |dep_loader|
+        dep_loader.call
+      end
+    end
+    
+    
   end
 end
