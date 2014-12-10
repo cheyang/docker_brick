@@ -6,7 +6,6 @@ class Brick
     extend Brick::Mixin::ConvertToClassName
     include Mixlib::CLI
     
-    cattr_accessor :logger
     
     def self.logger
       @@logger ||= Logger.new(STDOUT)
