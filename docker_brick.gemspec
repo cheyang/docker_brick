@@ -5,7 +5,7 @@ require 'brick/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "brick"
-  spec.version       = DockerBrick::VERSION
+  spec.version       = Brick::VERSION
   spec.authors       = ["cheyang"]
   spec.email         = ["cheyang@163.com"]
   spec.summary       = %q{TODO: Write a short summary. Required.}
