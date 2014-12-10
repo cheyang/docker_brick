@@ -145,6 +145,22 @@ class Brick
       end
     end
     
+    def initialize(argv=[])
+      command_name_words = self.class.snake_case_name.split('_')
+      
+      # Mixlib::CLI ignores the embedded name_args
+      @name_args = parse_options(argv)
+      @name_args.delete(command_name_words.join('-'))
+      @name_args.reject! { |name_arg| command_name_words.delete(name_arg) }
+
+=begin
+      if config[:help]
+        logger.info opt_parser
+        exit 1
+      end
+=end
+      
+    end
     
   end
 end
