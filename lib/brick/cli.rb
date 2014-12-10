@@ -8,6 +8,7 @@ class Brick
     def self.logger
       @logger ||= Logger.new(STDOUT)
       @logger.level = Logger::INFO
+      @logger
     end
     
     
