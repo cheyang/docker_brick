@@ -29,6 +29,7 @@ class Brick
     # options::: A Mixlib::CLI option parser hash. These +options+ are how
     # subcommands know about global knife CLI options
     def self.run(args, options={})
+      CLI_Validator::validate
       logger.info "begin to run the comand #{args}"
       load_commands
       subcommand_class = subcommand_class_from(args)
