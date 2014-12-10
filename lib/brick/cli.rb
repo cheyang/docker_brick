@@ -146,6 +146,8 @@ class Brick
     end
     
     def initialize(argv=[])
+      
+      super() 
       command_name_words = self.class.snake_case_name.split('_')
       
       # Mixlib::CLI ignores the embedded name_args
