@@ -88,6 +88,10 @@ class Brick
       end
     end
     
+    def self.snake_case_name
+      convert_to_snake_case(name.split('::').last) unless unnamed?
+    end
+    
     def self.load_commands
       @commands_loaded ||= subcommand_loader.load_commands
     end
