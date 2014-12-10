@@ -96,6 +96,16 @@ class Brick
       end
     end
     
+    def self.subcommands_by_category
+      unless @subcommands_by_category
+        @subcommands_by_category = Hash.new { |hash, key| hash[key] = [] }
+        subcommands.each do |snake_cased, klass|
+          @subcommands_by_category[klass.subcommand_category] << snake_cased
+        end
+      end
+      @subcommands_by_category
+    end
+    
     def self.snake_case_name
       convert_to_snake_case(name.split('::').last) unless unnamed?
     end
