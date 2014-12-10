@@ -1,6 +1,8 @@
 class Brick
   class CLI
     
+    extend Brick::mixin::ConvertToClassName
+    
     attr_accessor :logger
     
     def self.logger
