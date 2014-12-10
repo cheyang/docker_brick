@@ -119,5 +119,13 @@ class Brick
       @subcommand_loader ||= CLI::SubcommandLoader.new
     end
     
+    #Add catergory 
+     def self.category(new_category)
+      @category = new_category
+    end
+
+    def self.subcommand_category
+      @category || snake_case_name.split('_').first unless unnamed?
+    end
   end
 end
