@@ -1,6 +1,6 @@
 class Brick
   class CLI
-    class New
+    class New < CLI
       banner 'brick new MODEL(options)'
     end
   end
