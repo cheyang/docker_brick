@@ -1,7 +1,7 @@
 class Brick
   class CLI
     
-    extend Brick::mixin::ConvertToClassName
+    extend Brick::Mixin::ConvertToClassName
     
     attr_accessor :logger
     

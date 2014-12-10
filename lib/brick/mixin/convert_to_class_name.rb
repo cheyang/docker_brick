@@ -1,6 +1,5 @@
 class Brick
-  module Mixin
-    
+  module Mixin    
   end
 end
 
