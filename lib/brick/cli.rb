@@ -6,15 +6,15 @@ class Brick
     extend Brick::Mixin::ConvertToClassName
     include Mixlib::CLI
     
-    attr_accessor :logger
+    cattr_accessor :logger
     
     def self.logger
-      @logger ||= Logger.new(STDOUT)
-      @logger.level = Logger::INFO
-      @logger.formatter = proc do |severity, datetime, progname, msg|
+      @@logger ||= Logger.new(STDOUT)
+      @@logger.level = Logger::INFO
+      @@logger.formatter = proc do |severity, datetime, progname, msg|
           "#{msg}\n"
        end
-      @logger
+      @@logger
     end
     
     
