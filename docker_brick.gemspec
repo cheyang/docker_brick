@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Brick::VERSION
   spec.authors       = ["cheyang"]
   spec.email         = ["cheyang@163.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{ build, deploy app environment with docker, and can populate complicated configuration files }
+  spec.description   = %q{A tool can build and deploy app environment with docker, and can populate complicated configuration files }
   spec.homepage      = ""
   spec.license       = "MIT"
 
