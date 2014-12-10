@@ -11,6 +11,9 @@ class Brick
     def self.logger
       @logger ||= Logger.new(STDOUT)
       @logger.level = Logger::INFO
+      @logger.formatter = proc do |severity, datetime, progname, msg|
+          "#{msg}\n"
+       end
       @logger
     end
     
