@@ -42,7 +42,6 @@ class Brick
       subcommand_class.options = options.merge!(subcommand_class.options)
       subcommand_class.load_deps
       instance = subcommand_class.new(args)
-      instance.configure
       instance.run_with_pretty_exceptions
     end
     
@@ -162,6 +161,29 @@ class Brick
       end
 =end
       
+    end
+    
+    def run_with_pretty_exceptions
+      unless self.respond_to?(:run)
+        logger.error "You need to add a #run method to your knife command before you can use it"
+      end
+      run
+    rescue Exception => e
+      raise 
+      humanize_exception(e)
+      exit 100
+    end
+    
+     def humanize_exception(e)
+      case e
+      when SystemExit
+        raise # make sure exit passes through.
+      when Errno::ECONNREFUSED, Timeout::Error, Errno::ETIMEDOUT, SocketError
+        logger.error "Network Error: #{e.message}"
+        logger.info "Check your network settings"
+      else
+        logger.error "#{e.class.name}: #{e.message}"
+      end
     end
     
   end
