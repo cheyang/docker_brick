@@ -5,7 +5,7 @@ class Brick
     class ModelCreate < CLI
       
       
-      
+      #it's from Mixlib::CLI
       banner 'brick model create MODEL(options)'
       
     end

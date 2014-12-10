@@ -1,7 +1,10 @@
+require 'mixlib/cli'
+
 class Brick
   class CLI
     
     extend Brick::Mixin::ConvertToClassName
+    include Mixlib::CLI
     
     attr_accessor :logger
     
