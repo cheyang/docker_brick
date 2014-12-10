@@ -15,6 +15,10 @@ class Brick
       end
     end
     
+    def self.unnamed?
+      name.nil? || name.empty?
+    end
+    
      # Run command line for the given +args+ (ARGV), adding +options+ to the list of
     # CLI options that the subcommand knows how to handle.
     # ===Arguments

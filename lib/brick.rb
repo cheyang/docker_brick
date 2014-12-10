@@ -1,3 +1,3 @@
 require "brick/version"
 
-require "core/subcommand_loader"
+require "brick/cli/core/subcommand_loader"
