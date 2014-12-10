@@ -1,5 +1,12 @@
 class Brick
   module Mixin
+    
+  end
+end
+
+
+class Brick
+  module Mixin
     module ConvertToClassName
       extend self
 
