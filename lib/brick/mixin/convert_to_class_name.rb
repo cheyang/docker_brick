@@ -1,4 +1,4 @@
-class Brick
+module Brick
   module Mixin    
   end
 end

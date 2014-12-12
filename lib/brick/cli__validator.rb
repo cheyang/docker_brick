@@ -1,4 +1,4 @@
-class Brick
+module Brick
   class CLI_Validator
     NO_COMMAND_GIVEN = "You need to pass a sub-command (e.g., brick SUB-COMMAND)\n"
     

@@ -1,6 +1,6 @@
 require 'brick/cli'
 
-class Brick
+module Brick
   class CLI
     class ModelCreate < CLI
       

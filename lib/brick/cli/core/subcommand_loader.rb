@@ -1,7 +1,7 @@
 
 
 require 'brick/version'
-class Brick
+module Brick
   class CLI
     class SubcommandLoader
 

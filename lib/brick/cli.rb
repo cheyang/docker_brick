@@ -1,6 +1,6 @@
 require 'mixlib/cli'
 
-class Brick
+module Brick
   class CLI
     
     extend Brick::Mixin::ConvertToClassName
