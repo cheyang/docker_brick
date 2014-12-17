@@ -4,7 +4,7 @@ module Brick
 end
 
 
-class Brick
+module Brick
   module Mixin
     module ConvertToClassName
       extend self
