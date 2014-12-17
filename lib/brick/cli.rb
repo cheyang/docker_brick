@@ -35,7 +35,7 @@ module Brick
     # subcommands know about global knife CLI options
     def self.run(args, options={})
       CLI_Validator::validate
-      logger.info "begin to run the comand #{args}"
+      #logger.info "begin to run the comand #{args}"
       load_commands
       subcommand_class = subcommand_class_from(args)
       subcommand_class.options = options.merge!(subcommand_class.options)
