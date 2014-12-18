@@ -3,6 +3,9 @@ require 'yaml'
 module Brick
   module Models
     class Project
+      
+      include YamlHelper
+      
       attr_accessor :services, :docker_client, :name, :recreate, :insecure_registry
       
       def initialize(options={})
