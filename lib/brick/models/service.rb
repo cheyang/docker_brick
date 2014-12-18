@@ -1,9 +1,11 @@
 module Brick
   module Models
-    class Project
-      attr_accessor :services, :docker_client, :name, :links
+    class Service
+      attr_accessor :docker_client, :name, :links, :service_config
       
-      
+      def initialize(config)
+        @service_config = config
+      end
       
     end
   end  

@@ -1,4 +1,5 @@
 require 'yaml'
+require 'deepstruct'
 
 module Brick
   module Models
@@ -14,7 +15,7 @@ module Brick
            config_file = options[:config_file]
          end
         
-         @config = YAML::load_file config_file
+         init_services_from_config(config_file)
         
       end
       
@@ -23,7 +24,18 @@ module Brick
         
       end
       
-      def get_all_services()
+      def init_services_from_config(config_file=nil)
+        config_hash = load_yaml_file config_file
+        
+        config = DeepStruct.wrap(config_hash)
+        
+        @services = []
+        
+        config_hash.each_key{|key|  
+          @services << Service.new(eval "config.#{key}")        
+        }
+        
+        
         
       end
       

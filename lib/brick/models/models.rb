@@ -3,4 +3,4 @@ module Brick
   end
 end
 
-BKm = Brick::Models
+#BKm = Brick::Models
