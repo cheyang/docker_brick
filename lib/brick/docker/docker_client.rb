@@ -20,15 +20,15 @@ module Brick
       @base_url = ENV['DOCKER_URL']
       
       def self.connection base_url
-        unless @connection.nil?
-          @connection = @@connection_pool[base_url.to_sym]
+        
+          @connection ||= @@connection_pool[base_url.to_sym]
           
           if(@connection.nil?)
             @connection = Docker::Connection.new(base_url, {}) 
             @@connection_pool[base_url.to_sym] = @connection
           end
           
-        end
+        
         @connection
       end
       
