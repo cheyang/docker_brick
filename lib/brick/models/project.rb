@@ -5,7 +5,7 @@ module Brick
   module Models
     class Project
       
-      include YamlHelper
+      include Brick::Mixin::YamlHelper
       
       attr_accessor :services, :docker_client, :name, :recreate, :insecure_registry
       
