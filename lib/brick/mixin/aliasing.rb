@@ -20,4 +20,5 @@ module Brick::Mixin::Aliasing
     when private_method_defined?(without_method)
       private target
     end
+  end
 end
