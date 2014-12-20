@@ -4,6 +4,8 @@ require 'rspec'
 
 require 'brick'
 
+require 'ostruct'
+
 
 RSpec.shared_context "local paths" do
   def project_dir
