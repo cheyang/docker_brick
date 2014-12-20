@@ -4,3 +4,7 @@ module Brick
 end
 
 #BKm = Brick::Models
+
+require 'brick/models/service'
+
+require 'brick/models/project'
