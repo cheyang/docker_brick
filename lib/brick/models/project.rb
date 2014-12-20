@@ -1,4 +1,4 @@
-require 'yaml'
+require 'brick/mixin/yaml_helper'
 require 'deepstruct'
 
 module Brick
