@@ -2,7 +2,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'rspec'
 
-
+require 'brick'
 
 
 RSpec.shared_context "local paths" do

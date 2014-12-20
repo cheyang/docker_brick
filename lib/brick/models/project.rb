@@ -20,7 +20,7 @@ module Brick
       end
       
       
-      def get_services(service_name, inlcude_links=false)
+      def get_services(service_name, inlcude_links=false) 
         
       end
       
