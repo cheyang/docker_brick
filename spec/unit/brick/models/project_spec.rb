@@ -10,8 +10,22 @@ describe Brick::Models::Project do
    subject { described_class.new({:config_file=>@config_file}) }
    
    describe '#initialize' do
-     it "parse services correctly" do
-       subject.services.each{|x| puts x.name; puts x.service_config.image}
+     
+     context "when parsing fig_completed.yml" do
+       it "parse nginx service" do
+       #service nginx
+       nginx = Ostruct.new
+       
+       nginx.images = "nginx:latest"
+       
+       puts subject.services[0].service_config.links
+       
+       subject.services[0].name.should eq 'nginx'
+       
+       
      end
+     end
+     
+     
    end
 end
