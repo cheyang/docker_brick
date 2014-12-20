@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe Brick::Models::Service do
+describe Brick::Models::Project do
    subject { described_class.new({:config_file=>'fig_complete.yml'}) }
    
    describe '#initialize' do
