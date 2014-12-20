@@ -11,7 +11,7 @@ describe Brick::Models::Project do
    
    describe '#initialize' do
      it "parse services correctly" do
-       subject.services.each{|x| puts x}
+       subject.services.each{|x| puts x.service_config}
      end
    end
 end
