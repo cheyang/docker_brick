@@ -11,3 +11,5 @@ require "brick/cli__validator"
 require 'brick/models/models'
 
 require "logger"
+
+require 'brick/monkey_patches/hash'

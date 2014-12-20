@@ -5,4 +5,4 @@ gemspec
 
 gem 'docker-api', '~> 1.17.0'
 gem "mixlib-cli", "~> 1.3"
-gem 'deepstruct', '~> 0.0.7'
+#gem 'deepstruct', '~> 0.0.7'

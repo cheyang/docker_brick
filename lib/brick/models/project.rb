@@ -1,5 +1,5 @@
 require 'brick/mixin/yaml_helper'
-require 'deepstruct'
+#require 'deepstruct'
 
 module Brick
   module Models
@@ -27,7 +27,7 @@ module Brick
       def init_services_from_config(config_file=nil)
         config_hash = load_yaml_file config_file
         
-        config = DeepStruct.wrap(config_hash)
+        config = config_hash.to_ostruct
         
         @services = []
         
