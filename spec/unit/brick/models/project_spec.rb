@@ -14,7 +14,7 @@ describe Brick::Models::Project do
      context "when parsing fig_completed.yml" do
        it "parse nginx service" do
        #service nginx
-       nginx = Ostruct.new
+       nginx = OpenStruct.new
        
        nginx.images = "nginx:latest"
        
