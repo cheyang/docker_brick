@@ -3,7 +3,8 @@ module Brick
     class Service
       attr_accessor :docker_client, :name, :links, :service_config
       
-      def initialize(config)
+      def initialize(name, config)
+        @name = name
         @service_config = config
       end
       
