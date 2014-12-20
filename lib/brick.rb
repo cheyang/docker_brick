@@ -8,6 +8,5 @@ require "brick/mixin/aliasing"
 
 require "brick/cli__validator"
 
-require "brick/models"
 
 require "logger"
