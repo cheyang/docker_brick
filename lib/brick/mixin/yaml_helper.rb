@@ -12,6 +12,5 @@ module Brick::Mixin
     rescue SystemCallError => e
       raise  "Cannot load YAML file at `#{path}': #{e}"
     end
-  end
-end 
+  end 
 end
