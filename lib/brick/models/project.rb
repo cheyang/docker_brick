@@ -32,7 +32,7 @@ module Brick
         @services = []
         
         config_hash.each_key{|key|  
-          @services << Service.new(eval "config.#{key}")        
+          @services << Service.new(key,eval("config.#{key}"))        
         }
         
         
