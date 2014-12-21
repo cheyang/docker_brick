@@ -29,7 +29,7 @@ module Brick
           @connection ||= @@connection_pool[base_url.to_sym]
           
           if(@connection.nil?)
-            @connection = Docker::Connection.new(base_url, {}) 
+            @connection = ::Docker::Connection.new(base_url, {}) 
             @@connection_pool[base_url.to_sym] = @connection
           end
         end 
