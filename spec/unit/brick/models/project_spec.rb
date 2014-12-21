@@ -20,7 +20,7 @@ describe Brick::Models::Project do
        
         subject.services.each{|service|puts "links=#{service.service_config_hash["links"]}"; puts service.service_config_hash}
        
-       expect(subject.services[0]["name"]).to eq 'nginx'
+       expect(subject.services[0].name).to eq 'nginx'
        
        
      end
