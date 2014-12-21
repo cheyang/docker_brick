@@ -27,19 +27,38 @@ module Brick
         
       end
       
+      def get_service(name)
+        
+        service = nil
+        
+        unless @services.nil?
+        
+          service = @service[name]
+           
+       end
+       
+       service
+      end
+      
+      #initialize the configuration of each service, and put it into services
       def init_services_from_config(config_file=nil)
         config_hash = load_yaml_file config_file
         
        # config = config_hash.to_ostruct
         
-        @services = []
+        @services = {}
         
         config_hash.each_key{|key|  
         #  @services << Service.new(key,eval("config.#{key}"))  
-           @services << Service.new(key,config_hash[key])        
+           @services[key] =Service.new(key,config_hash[key])        
         }
         
         
+        
+      end
+      
+      
+      def up(include_link=true,restart=true)
         
       end
       
