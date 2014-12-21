@@ -1,4 +1,4 @@
-require "thread"  
+require 'monitor'
 require "docker"
 
 module Brick
@@ -13,23 +13,26 @@ module Brick
       
       @@default_client = nil
       
+      @@lock = Monitor.new
+      
       to_aliase_methods = [:run]
       
       attr_accessor :base_url, :connection
       
-      @@connection_pool = Hash.map
+      @@connection_pool = Hash.new
       
       @base_url = ENV['DOCKER_URL']
       
       def self.connection base_url
         
+        @@lock.synchronize do
           @connection ||= @@connection_pool[base_url.to_sym]
           
           if(@connection.nil?)
             @connection = Docker::Connection.new(base_url, {}) 
             @@connection_pool[base_url.to_sym] = @connection
           end
-          
+        end 
         
         @connection
       end
