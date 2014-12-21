@@ -30,13 +30,13 @@ module Brick
       def init_services_from_config(config_file=nil)
         config_hash = load_yaml_file config_file
         
-        config = config_hash.to_ostruct
+       # config = config_hash.to_ostruct
         
         @services = []
         
         config_hash.each_key{|key|  
-          @services << Service.new(key,eval("config.#{key}"))  
-           #@services << Service.new(key,config_hash[key])        
+        #  @services << Service.new(key,eval("config.#{key}"))  
+           @services << Service.new(key,config_hash[key])        
         }
         
         
