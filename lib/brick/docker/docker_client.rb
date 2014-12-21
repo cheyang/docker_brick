@@ -45,7 +45,9 @@ module Brick
         connection @base_url
       end
       
-      
+      def self.default
+        DockerClient.new
+      end
       
       
       

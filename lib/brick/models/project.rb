@@ -1,4 +1,5 @@
 require 'brick/mixin/yaml_helper'
+require 'brick/docker/docker_client'
 #require 'deepstruct'
 
 module Brick
@@ -9,13 +10,15 @@ module Brick
       
       attr_accessor :services, :docker_client, :name, :recreate, :insecure_registry
       
-      def initialize(options={})
+      def initialize(options={},client=Brick::Docker::DockerClient)
         
          unless options[:config_file].nil?
            config_file = options[:config_file]
          end
         
          init_services_from_config(config_file)
+         
+         @docker_client = client
         
       end
       
