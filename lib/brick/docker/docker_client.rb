@@ -11,6 +11,8 @@ module Brick
   module Docker
     class DockerClient
       
+      @@default_client = nil
+      
       to_aliase_methods = [:run]
       
       attr_accessor :base_url, :connection
@@ -32,7 +34,7 @@ module Brick
         @connection
       end
       
-      def initialize(options)
+      def initialize(options={})
         
         unless(options[:base_url].nil?)
           @base_url = options[:base_url]
@@ -46,7 +48,7 @@ module Brick
       end
       
       def self.default
-        DockerClient.new
+        @@default_client ||= DockerClient.new
       end
       
       
