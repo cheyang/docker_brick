@@ -18,7 +18,7 @@ describe Brick::Models::Project do
        
        nginx.images = "nginx:latest"
        
-        subject.services.each{|service|puts "links=#{service.service_config.links}"; puts service.service_config.inspect}
+        subject.services.each{|service|puts "links=#{service.service_config.links}"; puts service.service_config.to_h}
        
        subject.services[0].name.should eq 'nginx'
        
