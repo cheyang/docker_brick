@@ -43,11 +43,11 @@ module Brick
           @base_url = options[:base_url]
         end
         
-        if @base_url.nil?
-          @base_url = 'unix:///var/docker.sock'
-        end
         
-        connection @base_url
+          @base_url ||= 'unix:///var/docker.sock'
+        
+        
+        self.class.connection @base_url
       end
       
       def self.default
