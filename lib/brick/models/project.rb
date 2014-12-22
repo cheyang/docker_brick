@@ -10,7 +10,7 @@ module Brick
       
       attr_accessor :services, :docker_client, :name, :recreate, :insecure_registry
       
-      def initialize(options={},client=Brick::Docker::DockerClient::default)
+      def initialize(options={},client=nil)
         
          unless options[:config_file].nil?
            @config_file = options[:config_file]
@@ -19,7 +19,7 @@ module Brick
         
          init_services_from_config(@config_file)
          
-         @docker_client = client
+         @docker_client = client ? client : Brick::Docker::DockerClient::default
         
       end
       
