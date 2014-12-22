@@ -10,6 +10,7 @@ end
 module Brick
   module Docker
     class DockerClient
+      include Brick::Mixin::DockerSupport
       
       @@default_client = nil
       
@@ -52,7 +53,7 @@ module Brick
       
       def self.default
         @@default_client ||= DockerClient.new
-        puts "client=#{@@default_client}"       
+        #puts "client=#{@@default_client}"       
         return @@default_client
       end
       

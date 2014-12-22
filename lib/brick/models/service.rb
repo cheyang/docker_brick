@@ -3,7 +3,6 @@ require 'brick/mixin'
 module Brick
   module Models
     class Service
-      include Brick::Mixin::DockerSupport
       
       attr_accessor :client, :name, :links, :service_config_hash
       
