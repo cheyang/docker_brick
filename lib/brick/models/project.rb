@@ -16,11 +16,10 @@ module Brick
            @config_file = options[:config_file]
          end
          
+          @docker_client = client ? client : Brick::Docker::DockerClient::default
         
          init_services_from_config(@config_file)
-         
-         @docker_client = client ? client : Brick::Docker::DockerClient::default
-        
+                 
       end
       
       
