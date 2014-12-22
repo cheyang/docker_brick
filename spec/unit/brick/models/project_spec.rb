@@ -30,9 +30,9 @@ describe Brick::Models::Project do
   describe "#create service from image" do
      context "no link support" do
        
-       context "the nginx doesn't exist" do
-         it "create nginx service" do
-            instance=subject.create_services 'nginx'
+       context "the redis doesn't exist" do
+         it "create redis service" do
+            instance=subject.create_services 'redis'
             
             puts instance
           end
