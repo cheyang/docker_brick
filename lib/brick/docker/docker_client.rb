@@ -26,6 +26,8 @@ module Brick
       
       def self.connection base_url
         
+      conn = nil
+        
         @@lock.synchronize do
           conn ||= @@connection_pool[base_url.to_sym]
           
