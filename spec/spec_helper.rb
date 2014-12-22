@@ -6,6 +6,7 @@ require 'brick'
 
 require 'ostruct'
 
+Docker.API_VERSION=""
 
 Docker.logger=Logger.new(STDOUT)
 
