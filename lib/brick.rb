@@ -6,11 +6,11 @@ require "brick/cli/core/subcommand_loader"
 
 require "brick/cli__validator"
 
-require 'brick/models/models'
+require 'brick/models'
 
 require "logger"
 
 require 'brick/monkey_patches/hash'
 
 
-require 'brick/mixin/mixin'
+require 'brick/mixin'
