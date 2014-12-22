@@ -47,7 +47,7 @@ module Brick
         end
         
         
-          @base_url ||= 'unix:///var/docker.sock'
+          @base_url ||= 'unix:///var/run/docker.sock'
         
         
         @connection= self.class.connection @base_url
