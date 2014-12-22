@@ -7,7 +7,7 @@ require 'brick'
 require 'ostruct'
 
 
-Docker.logger=true
+Docker.logger=Logger.new(STDOUT)
 
 
 RSpec.shared_context "local paths" do
