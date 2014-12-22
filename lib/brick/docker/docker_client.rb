@@ -27,15 +27,15 @@ module Brick
       def self.connection base_url
         
         @@lock.synchronize do
-          @connection ||= @@connection_pool[base_url.to_sym]
+          conn ||= @@connection_pool[base_url.to_sym]
           
-          if(@connection.nil?)
-            @connection = ::Docker::Connection.new(base_url, {}) 
+          if(conn.nil?)
+            conn = ::Docker::Connection.new(base_url, {}) 
             @@connection_pool[base_url.to_sym] = @connection
           end
         end 
         
-        @connection
+        conn
       end
       
       def initialize(options={})
@@ -48,7 +48,9 @@ module Brick
           @base_url ||= 'unix:///var/docker.sock'
         
         
-        self.class.connection @base_url
+        @connection= self.class.connection @base_url
+        
+        puts "#{__method__} #{__LINE__} @connection=#{@connection}"
       end
       
       def self.default
