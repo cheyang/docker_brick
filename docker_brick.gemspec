@@ -23,4 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "mixlib-cli", "~> 1.3"
   spec.add_dependency "docker-api", "~> 1.17"
 #  spec.add_dependency "deepstruct", "~> 0.0.7"
+  spec.add_dependency 'excon', '>= 0.38.0'
+  spec.add_dependency 'json'
+  spec.add_dependency 'archive-tar-minitar'
 end
