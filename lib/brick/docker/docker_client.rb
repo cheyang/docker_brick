@@ -52,6 +52,9 @@ module Brick
       
       def self.default
         @@default_cient ||= DockerClient.new
+        puts "client=#{@@default_cient}"
+        
+        @@default_client
       end
       
       def create config_hash
