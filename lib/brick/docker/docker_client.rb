@@ -51,10 +51,9 @@ module Brick
       end
       
       def self.default
-        @@default_cient ||= DockerClient.new
-        puts "client=#{@@default_cient}"
-        
-        @@default_client
+        @@default_cilent ||= DockerClient.new
+        puts "client=#{@@default_cilent}"       
+        return @@default_client
       end
       
       def create config_hash
