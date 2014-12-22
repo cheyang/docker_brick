@@ -51,10 +51,12 @@ module Brick
       end
       
       def self.default
-        @@default_client ||= DockerClient.new
+        @@default_cient ||= DockerClient.new
       end
       
-      
+      def create config_hash
+        container = ::Docker::Container.create(transform_docker_hash(config_hash), connection)        
+      end
       
     end
   end

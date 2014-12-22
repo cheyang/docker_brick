@@ -32,7 +32,7 @@ describe Brick::Models::Project do
        
        context "the nginx doesn't exist" do
          it "create nginx service" do
-         
+            subject.create_services 'nginx'
           end
        end
      end
