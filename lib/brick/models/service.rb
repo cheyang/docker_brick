@@ -1,3 +1,5 @@
+require 'brick/mixin'
+
 module Brick
   module Models
     class Service
