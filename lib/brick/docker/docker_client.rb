@@ -51,8 +51,8 @@ module Brick
       end
       
       def self.default
-        @@default_cilent ||= DockerClient.new
-        puts "client=#{@@default_cilent}"       
+        @@default_client ||= DockerClient.new
+        puts "client=#{@@default_client}"       
         return @@default_client
       end
       
