@@ -1,5 +1,8 @@
 module Brick
   module Models 
+    class ServicesNotFoundException < RuntimeError
+      
+    end
   end
 end
 

@@ -27,7 +27,14 @@ describe Brick::Models::Project do
     end     
   end
   
-  describe "#up" do
-    
+  describe "#create service from image" do
+     context "no link support" do
+       
+       context "the nginx doesn't exist" do
+         it "create nginx service" do
+         
+          end
+       end
+     end
   end
 end

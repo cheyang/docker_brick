@@ -13,10 +13,11 @@ module Brick
       def initialize(options={},client=Brick::Docker::DockerClient::default)
         
          unless options[:config_file].nil?
-           config_file = options[:config_file]
+           @config_file = options[:config_file]
          end
+         
         
-         init_services_from_config(config_file)
+         init_services_from_config(@config_file)
          
          @docker_client = client
         
@@ -50,7 +51,7 @@ module Brick
         
         config_hash.each_key{|key|  
         #  @services << Service.new(key,eval("config.#{key}"))  
-           @services[key] =Service.new(key,config_hash[key])        
+           @services[key] =Service.new(key,config_hash[key],@docker_client)        
         }
         
         
@@ -59,6 +60,15 @@ module Brick
       
       
       def up(include_link=true,restart=true)
+        
+      end
+      
+      #create the service according to the service name
+      def create_services(service_name)
+        
+        service = @services[service_name]               
+        raise ServicesNotFoundException.new("service #{service_name} is not found in {@config_file}") if service.nil?
+        service.create_or_start
         
       end
       
