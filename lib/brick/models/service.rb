@@ -11,6 +11,7 @@ module Brick
         @name = name
         @service_config_hash = config
         @client = client
+        puts "client=#{client}"
       end
       
       def create_or_start
