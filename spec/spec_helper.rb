@@ -7,6 +7,9 @@ require 'brick'
 require 'ostruct'
 
 
+Docker.logger=true
+
+
 RSpec.shared_context "local paths" do
   def project_dir
     File.expand_path(File.join(File.dirname(__FILE__), '..'))
