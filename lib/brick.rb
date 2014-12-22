@@ -13,4 +13,4 @@ require "logger"
 require 'brick/monkey_patches/hash'
 
 
-require 'brick/mixin'
+require 'brick/mixin/mixin'
