@@ -15,6 +15,6 @@ require 'brick/monkey_patches/hash'
 
 require 'brick/mixin'
 
-require 'excon.rb'
+require 'excon'
 
 require 'brick/monkey_patches/connection'
