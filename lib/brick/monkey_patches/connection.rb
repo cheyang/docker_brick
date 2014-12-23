@@ -2,12 +2,12 @@ module Excon
   class Connection
      def error_call(datum)
       if datum[:error]
-        message = datum[:response]
+        message = datum[:response][:body] rescue nil
         
-        unless message.nil? or message.length==0
-            raise(datum[:error])
+        if !message.nil? and  message.length>0
+            raise(datum[:error],message)
           else
-            raise(datum[:error], message)
+            raise(datum[:error])
         end
       end
     end
