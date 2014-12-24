@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe Brick::Models::Project do
+describe "run single service" do
   
    before :all do
      @config_file = File.join(File.dirname(__FILE__),'fig_completed.yml' )
