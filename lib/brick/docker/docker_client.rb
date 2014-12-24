@@ -62,7 +62,17 @@ module Brick
       end
       
       def create config_hash
-        container = ::Docker::Container.create(transform_docker_hash(config_hash), connection)        
+        begin
+          container = ::Docker::Container.create(transform_docker_hash(config_hash), connection)
+        rescue Docker::Error::NotFoundError => exception
+            if exception.message.include? 'No such image'
+              ::Docker::Image.create({'fromImage'=> config_hash['image']},{}, connection)
+               container = ::Docker::Container.create(transform_docker_hash(config_hash), connection)
+            else
+              raise exception
+          end
+          return container
+        end
       end
       
     end
