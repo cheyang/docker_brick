@@ -32,7 +32,7 @@ describe Brick::Models::Project do
        
        context "the redis doesn't exist" do
          it "create redis service" do
-            instance=subject.create_services 'redis'
+            instance=subject.run_services 'redis'
             
             puts instance
           end

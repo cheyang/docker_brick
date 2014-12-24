@@ -63,11 +63,11 @@ module Brick
       end
       
       #create the service according to the service name
-      def create_services(service_name)
+      def run_services(service_name)
         
         service = @services[service_name]               
         raise ServicesNotFoundException.new("service #{service_name} is not found in {@config_file}") if service.nil?
-        service.create_or_start
+        service.run
         
       end
       

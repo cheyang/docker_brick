@@ -75,6 +75,12 @@ module Brick
         end
       end
       
+      def run config_hash
+        container = create config_hash
+        
+        container.start
+      end
+      
     end
   end
 end

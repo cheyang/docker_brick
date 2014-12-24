@@ -13,8 +13,8 @@ module Brick
         puts "client=#{client}"
       end
       
-      def create_or_start
-        client.create @service_config_hash
+      def run
+        client.run @service_config_hash
       end
       
     end
