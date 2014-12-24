@@ -14,7 +14,7 @@ module Brick
       end
       
       def run
-        client.run @service_config_hash
+        client.run @service_config_hash, name
       end
       
     end

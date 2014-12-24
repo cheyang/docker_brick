@@ -10,7 +10,9 @@ module Brick
       
       attr_accessor :services, :docker_client, :name, :recreate, :insecure_registry
       
-      def initialize(options={},client=nil)
+      def initialize(project_name ,options={},client=nil)
+        
+         @name = project_name
         
          unless options[:config_file].nil?
            @config_file = options[:config_file]
@@ -50,7 +52,7 @@ module Brick
         
         config_hash.each_key{|key|  
         #  @services << Service.new(key,eval("config.#{key}"))  
-           @services[key] =Service.new(key,config_hash[key],@docker_client)        
+           @services[key] =Service.new("#{@name}_#{key}_1",config_hash[key],@docker_client)        
         }
         
         
