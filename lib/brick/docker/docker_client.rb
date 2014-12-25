@@ -80,13 +80,35 @@ module Brick
         end
       end
       
+      #if the container is already existed, reuse it
+      #if the container is not started, start it
       def run config_hash, name=nil
-        container = create config_hash, name
         
-        container.start
+        container = get_container name
+        
+        
+        if container.nil?
+          container = create config_hash, name
+        else
+          Brick::CLI::logger.info "container #{name} has already existed."
+        end
+        
+        if container.info["Status"].include? "Exited"
+          container.start
+        else
+          Brick::CLI::logger.info "container #{name} is #{container.info["Status"]}"
+        end
       end
       
-      def from_ps config_hash, name=nil
+      def get_container  name=nil
+        
+        container = nil
+        
+        unless name.nil?
+          container = ::Docker::Container.search_by_name name
+        end
+        
+        container
         
       end
       
