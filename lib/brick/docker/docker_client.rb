@@ -93,6 +93,8 @@ module Brick
           Brick::CLI::logger.info "container #{name} has already existed."
         end
         
+        Brick::CLI::logger.info "container #{container}."
+        
         if container.info["Status"].include? "Exited"
           container.start
         else
