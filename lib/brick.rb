@@ -10,11 +10,11 @@ require 'brick/models'
 
 require "logger"
 
-require 'brick/monkey_patches/hash'
+require 'brick/monkey_patches'
 
 
 require 'brick/mixin'
 
 require 'excon'
 
-require 'brick/monkey_patches/connection'
+

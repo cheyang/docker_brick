@@ -86,6 +86,10 @@ module Brick
         container.start
       end
       
+      def from_ps config_hash, name=nil
+        
+      end
+      
     end
   end
 end
