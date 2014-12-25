@@ -2,7 +2,7 @@ require "brick/version"
 
 require "brick/cli/core/subcommand_loader"
 
-
+require "brick/cli"
 
 require "brick/cli__validator"
 
