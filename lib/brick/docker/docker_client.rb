@@ -108,7 +108,7 @@ module Brick
           container = ::Docker::Container.search_by_name name, connection
         end
         
-        container
+        container.first
         
       end
       
