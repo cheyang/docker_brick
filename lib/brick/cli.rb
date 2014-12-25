@@ -1,5 +1,5 @@
 require 'mixlib/cli'
-require 'mixin'
+require 'brick/mixin'
 
 module Brick
   class CLI
