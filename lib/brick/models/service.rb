@@ -10,7 +10,7 @@ module Brick
         @name = name
         @service_config_hash = config
         @client = client
-        puts "client=#{client}"
+        #puts "client=#{client}"
       end
       
       def run
