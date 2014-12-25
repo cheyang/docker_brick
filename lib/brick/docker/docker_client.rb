@@ -99,9 +99,8 @@ module Brick
         
         Brick::CLI::logger.debug "container #{container}."
         
-        status= container.info["Status"] rescue nil
         
-        unless status.include? "Up"
+        unless container.is_running?
           container.start
         else
           Brick::CLI::logger.info "container #{name} is #{container.info["Status"]}"

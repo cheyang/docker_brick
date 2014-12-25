@@ -14,4 +14,8 @@ class Docker::Container
     return result
   end
   
+  def is_running?
+   running= Docker::Container.get(id).info["State"]["Running"] 
+  end
+  
 end
