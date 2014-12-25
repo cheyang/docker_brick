@@ -69,10 +69,14 @@ module Brick
         
         begin
           container = ::Docker::Container.create(docker_hash, connection)
+          #get full information of the container
+          container = ::Docker::Container.get(container.id,connection)
         rescue ::Docker::Error::NotFoundError => exception
             if exception.message.include? 'No such image'
               ::Docker::Image.create({'fromImage'=> config_hash['image']},{}, connection)
                container = ::Docker::Container.create(docker_hash, connection)
+               #get full information of the container
+               container = ::Docker::Container.get(container.id,connection)
             else
               raise exception
           end
