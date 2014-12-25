@@ -105,7 +105,7 @@ module Brick
         container = nil
         
         unless name.nil?
-          container = ::Docker::Container.search_by_name name
+          container = ::Docker::Container.search_by_name name, connection
         end
         
         container
