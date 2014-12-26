@@ -55,7 +55,7 @@ describe Brick::Models::Project do
        
        context "disable dependency" do
          it "create redis service" do
-            instance=fig_dependency.run_services 'web', false
+            instance=fig_dependency.run_services 'db', false
             
             puts instance
           end
@@ -63,7 +63,7 @@ describe Brick::Models::Project do
       
       context "enable dependency" do
          it "create redis service" do
-            instance=fig_dependency.run_services 'web', true
+            instance=fig_dependency.run_services 'db', true
             
             puts instance
           end
