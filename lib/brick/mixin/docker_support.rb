@@ -42,6 +42,7 @@ module Brick::Mixin
         hash["ExposedPorts"]=exposed_ports
       end
       
+      hash
     end
     
     def start_config hsh
