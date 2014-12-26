@@ -32,6 +32,7 @@ module Brick
          
       end
       
+      #equals to "docker run"
       def run enable_link=true
         
         if running
@@ -52,6 +53,7 @@ module Brick
         end
       end
       
+      #Check if the container is running
       def running
         is_running = false
           unless container.nil?

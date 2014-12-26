@@ -1,0 +1,16 @@
+--- 
+db:
+  image: rastasheep/ubuntu-sshd:14.04
+  ports:
+    - "5432"
+    - "22"
+  command: /bin/bash
+web:
+  image: rastasheep/ubuntu-sshd:14.04
+  command: /bin/bash
+  volumes:
+    - .:/myapp
+  ports:
+    - "22:3000"
+  links:
+    - db
