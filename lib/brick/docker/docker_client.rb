@@ -105,6 +105,8 @@ module Brick
         else
           Brick::CLI::logger.info "container #{name} is #{container.info["Status"]}"
         end
+        
+        container
       end
       
       def get_container  name=nil

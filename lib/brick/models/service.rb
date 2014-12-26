@@ -4,7 +4,7 @@ module Brick
   module Models
     class Service
       
-      attr_accessor :client, :name, :links, :service_config_hash
+      attr_accessor :client, :name, :links, :service_config_hash, :container
       
       def initialize(name, config, client)
         @name = name
@@ -13,9 +13,9 @@ module Brick
         #puts "client=#{client}"
         unless config["links"].nil?         
           if  config["links"].instance_of?(String)
-            @links = [config["links"]]
+            links= [config["links"]]
           else
-            @links = config["links"]
+            links= config["links"]
           end
         end
       end
@@ -29,19 +29,35 @@ module Brick
             end
         
         }
-        
-        
-        
+         
       end
       
       def run enable_link=true
         
-        if enable_link
-          
+        if running
+          Brick::CLI::logger.debug "the service #{Name} is already running. exited."
+          return
         end
         
+        if enable_link
+          links.each{|linked_service|
+            linked_service.run enable_link
+          }
+        end
         
-        client.run @service_config_hash, name
+        if container.nil?       
+             @container = client.run @service_config_hash, name        
+        else
+             container.start
+        end
+      end
+      
+      def running
+        is_running = false
+          unless container.nil?
+            is_running = container.is_running?
+          end
+        is_running
       end
       
     end
