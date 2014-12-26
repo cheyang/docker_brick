@@ -1,6 +1,7 @@
 module Brick::Mixin
   module DockerSupport
    
+    #from yml file to the configuration for creating container
     def create_config hsh
       hash = transform_docker_hash hsh
         
@@ -45,14 +46,40 @@ module Brick::Mixin
     
     def start_config hsh
       hash = transform_docker_hash hsh
+        
+      port_bindings = []
+      
+      unless hash["ports"].nil?
+        ports = hash.delete "ports"
+        
+        ports.each{|port| 
+          
+          port_definition = port.split(':')
+          
+          if port_definition.size > 1
+            
+            container_port = port_definition[-1]
+            
+            host_port = port_definition[-2]
+            
+            proto ="tcp"
+            
+            port_bindings << {"#{container_port}/#{proto}"=>[{"HostPort"=>host_port}]}
+            
+          end
+        }
+        
+        hash["PortBindings"]=port_bindings
+      end
+      
+      hash 
     end
     
     #the format is captalize
     def transform_docker_hash hsh
-       hash= Hash[hsh.map {|k,v| [k.capitalize, v]}]
-       
-   end
-   
+      hash= Hash[hsh.map {|k,v| [k.capitalize, v]}]
+    end
+    
    private :transform_docker_hash
    
   end

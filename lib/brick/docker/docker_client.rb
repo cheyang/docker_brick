@@ -63,7 +63,7 @@ module Brick
       
       def create config_hash, name=nil
         
-       docker_hash= transform_docker_hash(config_hash)
+       docker_hash= create_config(config_hash)
         
        docker_hash['name'] = name unless name.nil?
         
