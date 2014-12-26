@@ -55,7 +55,10 @@ module Brick
            @services[key] =Service.new("#{@name}_#{key}_1",config_hash[key],@docker_client)        
         }
         
-        
+        @services.each_key{|key|  
+            service = @services[key]
+            service.update_links @services
+        }
         
       end
       

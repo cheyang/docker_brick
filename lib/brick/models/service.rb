@@ -11,9 +11,36 @@ module Brick
         @service_config_hash = config
         @client = client
         #puts "client=#{client}"
+        unless config["links"].nil?         
+          if  config["links"].instance_of?(String)
+            @links = [config["links"]]
+          else
+            @links = config["links"]
+          end
+        end
       end
       
-      def run
+      def update_links services
+        new_links = []
+        
+        links.each{|link|
+            if link.instance_of?(String)
+              new_links << services[link]
+            end
+        
+        }
+        
+        
+        
+      end
+      
+      def run enable_link=true
+        
+        if enable_link
+          
+        end
+        
+        
         client.run @service_config_hash, name
       end
       

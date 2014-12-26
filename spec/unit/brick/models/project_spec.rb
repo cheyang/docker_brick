@@ -50,4 +50,25 @@ describe Brick::Models::Project do
  
  subject { described_class.new("bdt",{:config_file=>File.join(File.dirname(__FILE__),'fig.yml' )}) }
  
+ describe "#create a service which has dependency" do
+     context "no link support" do
+       
+       context "disable dependency" do
+         it "create redis service" do
+            instance=subject.run_services 'redis'
+            
+            puts instance
+          end
+      end
+      
+      context "enable dependency" do
+         it "create redis service" do
+            instance=subject.run_services 'redis'
+            
+            puts instance
+          end
+       end
+     end
+ end
+ 
 end
