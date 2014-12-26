@@ -12,11 +12,11 @@ describe Brick::Models::Project do
    describe '#initialize' do
      
      context "when parsing fig_completed.yml" do
-       it "parse nginx service" do
+       it "parse redis service" do
        #service nginx
-       nginx = OpenStruct.new
+       redis = OpenStruct.new
        
-       nginx.images = "nginx:latest"
+       redis.images = "redis:latest"
        
         #subject.services.each{|service|puts "links=#{service.service_config_hash["links"]}"; puts service.service_config_hash}
        
