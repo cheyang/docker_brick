@@ -42,7 +42,7 @@ module Brick
           return
         end
         
-        if enable_link
+        if enable_link and !links.nil?
           links.each{|linked_service|
             linked_service.run enable_link
           }
