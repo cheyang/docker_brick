@@ -23,13 +23,15 @@ module Brick
       def update_links services
         new_links = []
         
-        links.each{|link|
+        unless links.nil?
+          links.each{|link|
             if link.instance_of?(String)
               new_links << services[link]
             end
+            
+          }
+        end
         
-        }
-         
       end
       
       #equals to "docker run"
@@ -47,18 +49,18 @@ module Brick
         end
         
         if container.nil?       
-             @container = client.run @service_config_hash, name        
+          @container = client.run @service_config_hash, name        
         else
-             container.start
+          container.start
         end
       end
       
       #Check if the container is running
       def running
         is_running = false
-          unless container.nil?
-            is_running = container.is_running?
-          end
+        unless container.nil?
+          is_running = container.is_running?
+        end
         is_running
       end
       
