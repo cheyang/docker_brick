@@ -7,7 +7,7 @@ describe Brick::Models::Project do
      @config_file = File.join("bdt",File.dirname(__FILE__),'fig_single.yml' )
    end
    
-   subject(:fig_single) { described_class.new({:config_file=>@config_file}) }
+   subject(:fig_single) { described_class.new("bdt",{:config_file=>@config_file}) }
    
    describe '#initialize' do
      
