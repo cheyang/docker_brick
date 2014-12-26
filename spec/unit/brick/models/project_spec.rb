@@ -32,15 +32,15 @@ describe Brick::Models::Project do
        
        context "the redis container doesn't exist" do
          it "create redis service" do
-            instance=subject.run_services 'redis'
+            instance=fig_single.run_services 'redis'
             
             puts instance
           end
       end
       
       context "the redis container already exist" do
-         it "create redis service" do
-            instance=subject.run_services 'redis'
+         it "create web service" do
+            instance=fig_single.run_services 'redis'
             
             puts instance
           end
