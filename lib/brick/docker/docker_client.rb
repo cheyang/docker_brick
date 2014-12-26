@@ -101,7 +101,7 @@ module Brick
         
         
         unless container.is_running?
-          container.start
+          container.start(start_config(config_hash))
         else
           Brick::CLI::logger.info "container #{name} is #{container.info["Status"]}"
         end
