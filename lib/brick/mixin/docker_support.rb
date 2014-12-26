@@ -10,8 +10,8 @@ module Brick::Mixin
       
      
       #add expose ports  
-      unless hash["ports"].nil?
-        ports = hash.delete "ports"
+      unless hash["Ports"].nil?
+        ports = hash.delete "Ports"
         
         ports.each{|port| 
         
@@ -23,8 +23,8 @@ module Brick::Mixin
       end
       
       #Add expose to exposed ports
-      unless hash["expose"].nil?
-         exposes = hash.delete "expose"
+      unless hash["Expose"].nil?
+         exposes = hash.delete "Expose"
          
          exposes.each{|expose| 
             exposed_ports << expose
@@ -50,8 +50,8 @@ module Brick::Mixin
         
       port_bindings = []
       
-      unless hash["ports"].nil?
-        ports = hash.delete "ports"
+      unless hash["Ports"].nil?
+        ports = hash.delete "Ports"
         
         ports.each{|port| 
           
