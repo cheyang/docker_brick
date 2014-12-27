@@ -65,7 +65,7 @@ module Brick::Mixin
             
             proto ="tcp"
             
-            port_bindings["#{container_port}/#{proto}"] = {"HostPort"=>host_port}
+            port_bindings["#{container_port}/#{proto}"] = [{"HostPort"=>host_port}]
             
            # port_bindings << {"#{container_port}/#{proto}"=>[{"HostPort"=>host_port}]}
             
