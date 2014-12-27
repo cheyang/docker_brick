@@ -48,7 +48,7 @@ module Brick::Mixin
     def start_config hsh
       hash = transform_docker_hash hsh
         
-      port_bindings = []
+      port_bindings = {}
       
       unless hash["Ports"].nil?
         ports = hash.delete "Ports"
@@ -65,7 +65,9 @@ module Brick::Mixin
             
             proto ="tcp"
             
-            port_bindings << {"#{container_port}/#{proto}"=>[{"HostPort"=>host_port}]}
+            port_bindings["#{container_port}/#{proto}"] = {"HostPort"=>host_port}
+            
+           # port_bindings << {"#{container_port}/#{proto}"=>[{"HostPort"=>host_port}]}
             
           end
         }
