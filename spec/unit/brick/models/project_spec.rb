@@ -52,18 +52,10 @@ describe Brick::Models::Project do
  
  describe "#create a service which has dependency" do
      context "no link support" do
-       
-       context "disable dependency" do
-         it "create redis service" do
-            instance=fig_dependency.run_services 'db', false
-            
-            puts instance
-          end
-      end
-      
+
       context "enable dependency" do
-         it "create redis service" do
-            instance=fig_dependency.run_services 'db', true
+         it "create web service" do
+            instance=fig_dependency.run_services 'web', true
             
             puts instance
           end
