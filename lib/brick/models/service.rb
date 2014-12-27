@@ -13,9 +13,9 @@ module Brick
         #puts "client=#{client}"
         unless config["links"].nil?         
           if  config["links"].instance_of?(String)
-            links= [config["links"]]
+            @links= [config["links"]]
           else
-            links= config["links"].dup
+            @links= config["links"].dup
           end
         end
       end
@@ -27,8 +27,8 @@ module Brick
         
         new_links =[]
         
-         unless links.nil?
-           links.each{|link|
+         unless @links.nil?
+           @links.each{|link|
                 
                 link_array=link.split(':')
                 
@@ -44,7 +44,7 @@ module Brick
                 new_links_config << "#{service_container}:#{alias_name}"
            }
            
-         links=new_links
+         @links=new_links
          
          service_config_hash["links"] = new_links_config
          end
