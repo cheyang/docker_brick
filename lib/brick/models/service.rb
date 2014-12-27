@@ -15,23 +15,41 @@ module Brick
           if  config["links"].instance_of?(String)
             links= [config["links"]]
           else
-            links= config["links"]
+            links= config["links"].dup
           end
         end
       end
       
+      
       def update_links services
-        new_links = []
         
-        unless links.nil?
-          links.each{|link|
-            if link.instance_of?(String)
-              new_links << services[link]
-            end
-            
-          }
-        end
+        new_links_config = []
         
+        new_links =[]
+        
+         unless links.nil?
+           links.each{|link|
+                
+                link_array=link.split(':')
+                
+                #It's for getting the real service name
+                service_key = link_array[0]
+                
+                alias_name = link_array[-1]
+                
+                service_container= services[service_key]
+                
+                new_links << service_container
+                
+                new_links_config << "#{service_container}:#{alias_name}"
+           }
+           
+         links=new_links
+         
+         service_config_hash["links"] = new_links_config
+         end
+        
+         
       end
       
       #equals to "docker run"
