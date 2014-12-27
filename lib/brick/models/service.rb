@@ -41,7 +41,7 @@ module Brick
                 
                 new_links << service_container
                 
-                new_links_config << "#{service_container}:#{alias_name}"
+                new_links_config << "#{service_container.name}:#{alias_name}"
            }
            
          @links=new_links
