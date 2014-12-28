@@ -55,7 +55,7 @@ module Brick
       #equals to "docker run"
       def run enable_link=true
         
-        if running
+        if running?
           Brick::CLI::logger.debug "the service #{Name} is already running. exited."
           return
         end
@@ -74,7 +74,7 @@ module Brick
       end
       
       #Check if the container is running
-      def running
+      def running?
         is_running = false
         unless container.nil?
           is_running = container.is_running?
