@@ -81,6 +81,10 @@ module Brick::Mixin
     #the format is captalize
     def transform_docker_hash hsh
       hash= Hash[hsh.map {|k,v| [k.capitalize, v]}]
+      
+      cmd= hash.delete('Command')
+      
+      hash['Cmd']=cmd
     end
     
    private :transform_docker_hash
