@@ -85,6 +85,8 @@ module Brick::Mixin
       cmd= hash.delete('Command')
       
       hash['Cmd']=cmd
+      
+      hash
     end
     
    private :transform_docker_hash
