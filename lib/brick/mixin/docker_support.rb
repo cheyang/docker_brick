@@ -53,7 +53,7 @@ module Brick::Mixin
         volumes.each{|vo| 
             vo_parts = vo.split(':')
             
-            volume_hash[vo_parst[1]] = {}
+            volume_hash[vo_parts[1]] = {}
         
         }
         
