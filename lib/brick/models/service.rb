@@ -4,19 +4,58 @@ module Brick
   module Models
     class Service
       
-      attr_accessor :client, :name, :links, :service_config_hash, :container
+      attr_accessor :client, :name, :links, :service_config_hash, :container, :volumes_from
       
       def initialize(name, config, client)
-        @name = name
-        @service_config_hash = config
-        @client = client
+        self.name = name
+        self.service_config_hash = config
+        self.client = client
         #puts "client=#{client}"
         unless config["links"].nil?         
           if  config["links"].instance_of?(String)
-            @links= [config["links"]]
+            self.links= [config["links"]]
           else
-            @links= config["links"].dup
+            self.links= config["links"].dup
           end
+        end
+        
+        unless config["volumes_from"].nil?
+         if  config["volumes_from"].instance_of?(String)
+            self.volumes_from= [config["volumes_from"]]
+          else
+            self.volumes_from= config["volumes_from"].dup
+          end
+        end
+        
+      end
+      
+      def update_volumes_from services
+        
+        new_volumes_from_config = []
+        
+        new_volumes_from = []
+        
+        unless volumes_from.nil?
+          
+          volumes_from.each {|vo|
+                           #new_volumes_from << services[vo]
+                            vo_parts = vo.split(':')
+                            
+                            #only one part
+                            if vo_parts.size == 1
+                              new_vo = "#{services[vo_parts[0]]}:rw"
+                            else
+                              new_vo=  "#{services[vo_parts[0]]}:#{vo_parts[1]}"
+                            end
+                            
+                            new_volumes_from<< services[vo_parts[0]]
+                            
+                            new_volumes_from_config << new_vo
+                            
+                            }
+          self.volumes_from = new_volumes_from
+          
+          service_config_hash["volumes_from"] = new_volumes_from_config
         end
       end
       
@@ -27,8 +66,8 @@ module Brick
         
         new_links =[]
         
-         unless @links.nil?
-           @links.each{|link|
+         unless links.nil?
+           links.each{|link|
                 
                 link_array=link.split(':')
                 
@@ -44,7 +83,7 @@ module Brick
                 new_links_config << "#{service_container.name}:#{alias_name}"
            }
            
-         @links=new_links
+         self.links=new_links
          
          service_config_hash["links"] = new_links_config
          end

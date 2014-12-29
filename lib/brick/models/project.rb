@@ -58,6 +58,7 @@ module Brick
         @services.each_key{|key|  
             service = @services[key]
             service.update_links @services
+            service.update_volumes_from @services
         }
         
       end
