@@ -87,7 +87,7 @@ module Brick::Mixin
       #hash['Cmd']=cmd.split(' ') unless cmd.nil? 
       
       unless cmd.nil?
-        if cmd.instance_of Array
+        if cmd.instance_of? Array
           hash['Cmd'] = cmd
         else
           hash['Cmd'] = cmd.split(/[ ]+/)         
