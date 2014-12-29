@@ -2,48 +2,103 @@ require 'shellwords'
 
 module Brick::Mixin
   module DockerSupport
-   
+    
     #from yml file to the configuration for creating container
     def create_config hsh
-      hash = transform_docker_hash hsh
-        
-        
-      exposed_ports = []
+      transform_docker_hash hash
       
-     
-      #add expose ports  
-      unless hash["Ports"].nil?
-        ports = hash.delete "Ports"
+      create_config_for_port hash
+      
+      create_config_for_volume hash
+      
+      hash
+    end
+    
+    def start_config hash
+      transform_docker_hash hash
+      
+      start_config_for_port hash
+      
+      start_config_for_volumes hash
+      
+      hash 
+    end
+    
+    #the format is captalize
+    def transform_docker_hash hsh
+      hash= Hash[hsh.map {|k,v| [k.capitalize, v]}]
+      
+      common_config_for_cmd hash
+      
+      common_config_for_env hash
+      
+      
+      common_config_for_volumes hash
+      
+      
+    end
+    
+    hash
+  end
+  
+  def common_config_for_cmd hash
+    cmd= hash.delete('Command')
+    
+    #hash['Cmd']=cmd.split(' ') unless cmd.nil? 
+    
+    unless cmd.nil?
+      if cmd.instance_of? Array
+        hash['Cmd'] = cmd
+      else
+        hash['Cmd'] = Shellwords.split(cmd)       
+      end
+    end
+    
+    hash
+  end
+  
+  #common configuration for environment variable
+  def common_config_for_env hash
+    #Support environment variables
+    env_variables = hash.delete('Environment')
+    
+    unless env_variables.nil?
+      if env_variables.instance_of? Array
+        hash['Env'] = env_variables
+      elsif env_variables.instance_of? Hash
+        var_arrays = []
+        env_variables.each {|key, value| var_arrays<<"#{key}=#{value}" }
+        hash['Env'] = var_arrays
         
-        ports.each{|port| 
-        
-          container_port = (port.split(':'))[-1]
-         
-          exposed_ports << container_port
+      end
+    end
+  end
+  
+  def common_config_for_volumes hash
+    #volumes 
+    unless hash["Volumes"].nil?
+      volumes = hash["Volumes"]
+      
+      if volumes.instance_of? Array
+        volumes.map!{|vo| 
+          vo_parts = vo.split(":")
+          
+          if vo_parts.size==1
+            [vo_parts[0],vo_parts[0],'rw'].join(':')
+          elsif vo_parts.size==2
+            [vo_parts[0],vo_parts[1],'rw'].join(':')
+          elsif vo_parts.size==3
+            vo
+          end  
         }
-        
+      else
+        raise "the value of volumes should be an array"
       end
       
-      #Add expose to exposed ports
-      unless hash["Expose"].nil?
-         exposes = hash.delete "Expose"
-         
-         exposes.each{|expose| 
-            exposed_ports << expose
-         }
-      end
-      
-      
-      
-      if exposed_ports.size > 0
-        
-         proto = 'tcp'
-        
-        exposed_ports.map!{|container_port| {"#{container_port}/#{proto}"=>{}}}
-        
-        hash["ExposedPorts"]=exposed_ports
-      end
-      
+      hash
+    end
+    
+    def create_config_for_volumes hash
       #create config for volumes
       unless hash["Volumes"].nil?
         volumes = hash.delete('Volumes')
@@ -51,21 +106,74 @@ module Brick::Mixin
         volume_hash={}
         
         volumes.each{|vo| 
-            vo_parts = vo.split(':')
-            
-            volume_hash[vo_parts[1]] = {}
-        
+          vo_parts = vo.split(':')
+          
+          volume_hash[vo_parts[1]] = {}
+          
         }
         
         hash['Volumes'] = volume_hash
+        
+        hash
+      end
+      hash
+    end
+    
+    def start_config_for_volumes hash
+      #start config for volumes
+      #start config for volumes
+      unless hash["Volumes"].nil?
+        binds = hash.delete('Volumes')
+        
+        hash["Binds"] = binds
+      end
+      hash
+    end
+    
+    #the port configuration for creating container 
+    def create_config_for_port hash
+      exposed_ports = []
+      
+      
+      #add expose ports  
+      unless hash["Ports"].nil?
+        ports = hash.delete "Ports"
+        
+        ports.each{|port| 
+          
+          container_port = (port.split(':'))[-1]
+          
+          exposed_ports << container_port
+        }
+        
+      end
+      
+      #Add expose to exposed ports
+      unless hash["Expose"].nil?
+        exposes = hash.delete "Expose"
+        
+        exposes.each{|expose| 
+          exposed_ports << expose
+        }
+      end
+      
+      
+      
+      if exposed_ports.size > 0
+        
+        proto = 'tcp'
+        
+        exposed_ports.map!{|container_port| {"#{container_port}/#{proto}"=>{}}}
+        
+        hash["ExposedPorts"]=exposed_ports
       end
       
       hash
     end
     
-    def start_config hsh
-      hash = transform_docker_hash hsh
-        
+    #the port configuration for starting container  
+    def start_config_for_port hash
+      #the setting for start config  
       port_bindings = {}
       
       unless hash["Ports"].nil?
@@ -85,7 +193,7 @@ module Brick::Mixin
             
             port_bindings["#{container_port}/#{proto}"] = [{"HostPort"=>host_port}]
             
-           # port_bindings << {"#{container_port}/#{proto}"=>[{"HostPort"=>host_port}]}
+            # port_bindings << {"#{container_port}/#{proto}"=>[{"HostPort"=>host_port}]}
             
           end
         }
@@ -93,73 +201,12 @@ module Brick::Mixin
         hash["PortBindings"]=port_bindings
       end
       
-      #start config for volumes
-      unless hash["Volumes"].nil?
-        binds = hash.delete('Volumes')
-        
-        hash["Binds"] = binds
-      end
       
-      hash 
-    end
-    
-    #the format is captalize
-    def transform_docker_hash hsh
-      hash= Hash[hsh.map {|k,v| [k.capitalize, v]}]
-      
-      cmd= hash.delete('Command')
-      
-      #hash['Cmd']=cmd.split(' ') unless cmd.nil? 
-      
-      unless cmd.nil?
-        if cmd.instance_of? Array
-          hash['Cmd'] = cmd
-        else
-          hash['Cmd'] = Shellwords.split(cmd)       
-        end
-      end
-      
-      #Support environment variables
-       env_variables = hash.delete('Environment')
-        
-        unless env_variables.nil?
-          if env_variables.instance_of? Array
-            hash['Env'] = env_variables
-          elsif env_variables.instance_of? Hash
-            var_arrays = []
-            env_variables.each {|key, value| var_arrays<<"#{key}=#{value}" }
-            hash['Env'] = var_arrays
-            
-          end
-        end
-        
-        #volumes 
-      unless hash["Volumes"].nil?
-        volumes = hash["Volumes"]
-        
-        if volumes.instance_of? Array
-          volumes.map!{|vo| 
-              vo_parts = vo.split(":")
-              
-              if vo_parts.size==1
-                [vo_parts[0],vo_parts[0],'rw'].join(':')
-              elsif vo_parts.size==2
-                [vo_parts[0],vo_parts[1],'rw'].join(':')
-              elsif vo_parts.size==3
-                vo
-              end  
-          }
-         else
-          raise "the value of volumes should be an array"
-        end
-        
-        
-      end
       
       hash
     end
     
-   private :transform_docker_hash
-   
+    private :transform_docker_hash, :start_config_for_port, :create_config_for_port
+    
   end
 end

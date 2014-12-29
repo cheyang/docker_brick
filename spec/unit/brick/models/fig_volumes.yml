@@ -8,4 +8,6 @@ test_volume:
     - /root/hello_docker
     - /root/test.rb:/test.rb:ro
     - /nc_server:/test
-
+data_container:
+  image: ubuntu:latest
+  
