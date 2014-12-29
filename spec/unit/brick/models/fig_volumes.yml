@@ -1,0 +1,11 @@
+--- 
+test_volume:
+  image: "rastasheep/ubuntu-sshd:14.04"
+  environment:
+    - ABC=development
+    - CYCY=TEST
+  volumes:
+    - /root/hello_docker
+    - /root/test.rb:/test.rb:ro
+    - /nc_server:/test
+

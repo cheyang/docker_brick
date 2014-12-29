@@ -44,6 +44,22 @@ module Brick::Mixin
         hash["ExposedPorts"]=exposed_ports
       end
       
+      #create config for volumes
+      unless hash["Volumes"].nil?
+        volumes = hash.delete('Volumes')
+        
+        volume_hash={}
+        
+        volumes.each{|vo| 
+            vo_parts = vo.split(':')
+            
+            volume_hash[vo_parst[1]] = {}
+        
+        }
+        
+        hash['Volumes'] = volume_hash
+      end
+      
       hash
     end
     
@@ -77,6 +93,13 @@ module Brick::Mixin
         hash["PortBindings"]=port_bindings
       end
       
+      #start config for volumes
+      unless hash["Volumes"].nil?
+        binds = hash.delete('Volumes')
+        
+        hash["Binds"] = binds
+      end
+      
       hash 
     end
     
@@ -96,6 +119,7 @@ module Brick::Mixin
         end
       end
       
+      #Support environment variables
        env_variables = hash.delete('Environment')
         
         unless env_variables.nil?
@@ -108,6 +132,29 @@ module Brick::Mixin
             
           end
         end
+        
+        #volumes 
+      unless hash["Volumes"].nil?
+        volumes = hash["Volumes"]
+        
+        if volumes.instance_of? Array
+          volumes.map!{|vo| 
+              vo_parts = vo.split(":")
+              
+              if vo_parts.size==1
+                [vo_parts[0],vo_parts[0],'rw'].join(':')
+              elsif vo_parts.size==2
+                [vo_parts[0],vo_parts[1],'rw'].join(':')
+              elsif vo_parts.size==3
+                vo
+              end  
+          }
+         else
+          raise "the value of volumes should be an array"
+        end
+        
+        
+      end
       
       hash
     end
