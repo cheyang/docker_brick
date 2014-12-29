@@ -7,7 +7,7 @@ db:
   tty: true
 web:
   image: ubuntu:latest
-  command: /bin/sh -c 'while true; do env; sleep 1; done'
+  command: /bin/bash -c 'while true; do env; sleep 1; done'
   volumes:
     - .:/myapp
   ports:
