@@ -57,7 +57,7 @@ describe Brick::Models::Project do
          it "create web service" do
             instance=fig_dependency.run_services 'web', true
             
-           fig_dependency.services.each_value{|service| expect(service.running?)}
+           fig_dependency.services.each_value{|service| expect(service.running?).to eq(true)}
             
             
           end
