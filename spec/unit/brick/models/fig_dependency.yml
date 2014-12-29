@@ -15,3 +15,6 @@ web:
   tty: true
   links:
     - db
+  attachStdin: true
+  attachStdout: true
+  attachStderr: true
