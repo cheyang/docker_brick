@@ -15,7 +15,7 @@ describe Brick::Models::Service do
      subject(:fig_volumes) { described_class.new("test_volume", config_hash["test_volume"],@client ) }
       
      describe 'if it has volumes config' do
-        fig_volumes.run
+        subject.run
      end
   end
   
