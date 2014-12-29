@@ -9,8 +9,6 @@ db:
 web:
   image: ubuntu:latest
   command: /bin/bash -c 'while true; do env; sleep 1; done'
-  volumes:
-    - .:/myapp
   ports:
     - "3000:22"
   tty: true
