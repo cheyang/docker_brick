@@ -14,3 +14,6 @@ web:
   tty: true
   links:
     - db
+  environment:
+    ABC: test
+    CDE: cycy
