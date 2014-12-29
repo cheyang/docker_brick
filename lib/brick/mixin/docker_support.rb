@@ -104,7 +104,7 @@ module Brick::Mixin
           elsif env_variables.instance_of? Hash
             var_arrays = []
             env_variables.each {|key, value| var_arrays<<"#{key}=#{value}" }
-            hash['Env'] = env_variables
+            hash['Env'] = var_arrays
             
           end
         end
