@@ -5,6 +5,7 @@ db:
     - "5432"
     - "3001:22"
   command: /bin/bash
+  tty: true
 web:
   image: rastasheep/ubuntu-sshd:14.04
   command: /bin/bash
@@ -12,5 +13,6 @@ web:
     - .:/myapp
   ports:
     - "3000:22"
+  tty: true
   links:
     - db
