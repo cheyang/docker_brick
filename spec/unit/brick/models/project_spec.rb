@@ -4,6 +4,8 @@ require 'spec_helper'
 describe Brick::Models::Project do
   
    before :all do
+     `docker stop $(docker ps -aq)`
+     `docker rm $(docker ps -aq)`    
      @config_file = File.join(File.dirname(__FILE__),'fig_single.yml' )
    end
    
