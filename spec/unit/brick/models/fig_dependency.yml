@@ -5,6 +5,7 @@ db:
     - "5432"
     - "3001:22"
   tty: true
+  Command: /usr/sbin/sshd -D
 web:
   image: ubuntu:latest
   command: /bin/bash -c 'while true; do env; sleep 1; done'
