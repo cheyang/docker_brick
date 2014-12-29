@@ -1,3 +1,6 @@
 --- 
 redis:
   image: "redis:latest"
+  environment:
+    - ABC=development
+    - CYCY=TEST
