@@ -94,9 +94,18 @@ module Brick::Mixin
         else
           hash['Cmd'] = Shellwords.split(cmd)       
         end
-        
-        
       end
+      
+       env_variables = hash.delete('Environment')
+        
+        unless env_variables.nil?
+          if env_variables.instance_of? Array
+            hash['Env'] = env_variables
+          elsif env_variables.instance_of? Hash
+            var_arrays = []
+            env_variables.each {|key, value| var_arrays<<"#{key}=#{value}" }
+          end
+        end
       
       hash
     end
