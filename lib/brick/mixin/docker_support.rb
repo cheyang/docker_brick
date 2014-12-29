@@ -1,3 +1,5 @@
+require 'shellwords'
+
 module Brick::Mixin
   module DockerSupport
    
@@ -90,7 +92,7 @@ module Brick::Mixin
         if cmd.instance_of? Array
           hash['Cmd'] = cmd
         else
-          hash['Cmd'] = cmd.split(/[ ]+/)         
+          hash['Cmd'] = Shellwords.split(cmd)       
         end
         
         
