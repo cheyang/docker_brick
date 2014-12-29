@@ -1,4 +1,5 @@
 require 'spec_helper'
+include Brick::Mixin::YamlHelper
 
 describe Brick::Models::Service do
   
@@ -9,7 +10,7 @@ describe Brick::Models::Service do
   
   describe 'test data volumes' do
    
-     config_hash = Brick::Mixin::YamlHelper.load_yaml_file File.join(File.dirname(__FILE__),'fig_volumes.yml' )
+     config_hash = load_yaml_file File.join(File.dirname(__FILE__),'fig_volumes.yml' )
      
      subject(:fig_volumes) { described_class.new("test_volume", config_hash["test_volume"],@client ) }
       
