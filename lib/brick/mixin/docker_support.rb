@@ -174,7 +174,7 @@ module Brick::Mixin
         
         exposed_ports.each {|container_port| exposed_port_hash["#{container_port}/#{proto}"]={}}
         
-        hash["ExposedPorts"]=exposed_ports
+        hash["ExposedPorts"]=exposed_port_hash
       end
       
       hash
