@@ -126,7 +126,7 @@ module Brick
       end
       
       def container_info
-         container.json rescue {}
+         container.info["Config"] rescue {}
       end
       
     end
