@@ -5,7 +5,7 @@ include Brick::Mixin::DockerSupport
 describe Brick::Mixin::DockerSupport do
   
   before :all do
-    @config_hash = load_yaml_file File.join(File.dirname(__FILE__),'fig_volumes.yml' )
+    @config_hash = load_yaml_file File.join(File.dirname(__FILE__),'docker_support.yml' )
   end
   
   describe '#common_config' do
