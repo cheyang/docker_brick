@@ -10,20 +10,18 @@ describe Brick::Mixin::DockerSupport do
   
   describe '#common_config' do
     
-    it 'init common_config_hash' do
-       @common_config_hash = transform_docker_hash @config_hash
-    end
+    
     
     it 'environment variable array tranformation' do
-      expect(@common_config_hash["env_array"]["Env"]).to eq ["ABC=development","CYCY=TEST"]
+      expect((transform_docker_hash @config_hash['env_array'])["Env"]).to eq ["ABC=development","CYCY=TEST"]
     end
     
     it 'environment variable hash tranformation' do 
-      expect(@common_config_hash["env_hash"]["Env"]).to eq ["ABC=test","CDE=cycy"]
+      expect(transform_docker_hash @config_hash['env_hash']["Env"]).to eq ["ABC=test","CDE=cycy"]
     end
     
     it 'command tranformation' do 
-      expect(@common_config_hash["command_test"]["Cmd"]).to eq ["/bin/bash","-c","'while true; do env; sleep 1; done'"]
+      expect((transform_docker_hash @config_hash['command_test'])["Cmd"]).to eq ["/bin/bash","-c","'while true; do env; sleep 1; done'"]
     end
     
   end
