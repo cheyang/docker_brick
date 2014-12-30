@@ -192,18 +192,19 @@ module Brick::Mixin
           
           port_definition = port.split(':')
           
+           proto ="tcp"
+          
           if port_definition.size > 1
             
             container_port = port_definition[-1]
             
             host_port = port_definition[-2]
-            
-            proto ="tcp"
-            
+      
             port_bindings["#{container_port}/#{proto}"] = [{"HostPort"=>host_port}]
             
             # port_bindings << {"#{container_port}/#{proto}"=>[{"HostPort"=>host_port}]}
-            
+          else
+            port_bindings["#{port}/#{proto}"] = [{"HostPort"=>port}]
           end
         }
         
