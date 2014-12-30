@@ -170,7 +170,9 @@ module Brick::Mixin
         
         proto = 'tcp'
         
-        exposed_ports.map!{|container_port| {"#{container_port}/#{proto}"=>{}}}
+        exposed_port_hash = Hash.new
+        
+        exposed_ports.each {|container_port| exposed_port_hash["#{container_port}/#{proto}"]={}}
         
         hash["ExposedPorts"]=exposed_ports
       end
