@@ -27,13 +27,14 @@ module Brick::Mixin
     #the format is captalized
     private
     def transform_docker_hash hash
-      hash.map! do |k,v| 
+      hash= Hash[hash.map do |k,v| 
         keys=k.split('_')
         
         keys.map!{|key|key.capitalize}
         
         [keys.join(''), v]
       end
+      ]
       
       common_config_for_cmd hash
       
