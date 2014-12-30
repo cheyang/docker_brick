@@ -17,11 +17,11 @@ describe Brick::Mixin::DockerSupport do
     end
     
     it 'environment variable hash tranformation' do 
-      expect(transform_docker_hash @config_hash['env_hash']["Env"]).to eq ["ABC=test","CDE=cycy"]
+      expect((transform_docker_hash @config_hash['env_hash'])["Env"]).to eq ["ABC=test","CDE=cycy"]
     end
     
     it 'command tranformation' do 
-      expect((transform_docker_hash @config_hash['command_test'])["Cmd"]).to eq ["/bin/bash","-c","'while true; do env; sleep 1; done'"]
+      expect((transform_docker_hash @config_hash['command_test'])["Cmd"]).to eq ["/bin/bash","-c","while true; do env; sleep 1; done"]
     end
     
   end
