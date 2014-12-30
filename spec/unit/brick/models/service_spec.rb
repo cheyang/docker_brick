@@ -38,12 +38,12 @@ describe Brick::Models::Service do
        expect(app_container.running?).to eq true
        expect(data_container.running?).to eq true
        
-       expect(data_container.container_info["Volumes"]).to eq({"/hello_docker"=> "/hello_docker",
+       expect(app_container.container_info["Volumes"]).to eq({"/hello_docker"=> "/hello_docker",
         "/test"=> "/tmp",
         "/test.rb"=> "/tmp/test.rb"
         })
         
-        expect(data_container.container_info["HostConfig"]["VolumesFrom"]).to eq(["data_container:rw"])
+        expect(app_container.container_info["HostConfig"]["VolumesFrom"]).to eq(["data_container:rw"])
      end
    end
   
