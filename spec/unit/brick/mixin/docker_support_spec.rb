@@ -30,7 +30,7 @@ describe Brick::Mixin::DockerSupport do
   
   
   describe '#create_config' do
-    create_config_hash = create_config @config_hash
+    #create_config_hash = create_config @config_hash
     
     
   end
