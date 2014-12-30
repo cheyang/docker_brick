@@ -21,4 +21,13 @@ env_hash:
 command_test:
    image: "rastasheep/ubuntu-sshd:14.04"
    command: /bin/bash -c 'while true; do env; sleep 1; done'
+port_test:
+   ports:
+    - "5432"
+    - "3001:22"
+volume_test:
+   volumes:
+    - /root/hello_docker
+    - /root/test.rb:/test.rb:ro
+    - /nc_server:/test
   

@@ -29,12 +29,38 @@ describe Brick::Mixin::DockerSupport do
   
   describe '#create_config' do
     #create_config_hash = create_config @config_hash
+     it 'port configruation for creating container' do 
+      expect((create_config @config_hash['port_test'])["ExposedPorts"]).to eq({"5432/tcp"=>{}, "22/tcp"=>{}})
+    end
+    
+     it 'port attribute should be removed creating container' do 
+      expect((create_config @config_hash['port_test'])["Ports"]).to eq nil
+    end
+    
+    it 'volume configruation for creating container' do 
+      expect((create_config @config_hash['volume_test'])["Volumes"]).to eq({"/root/hello_docker"=>{}, "/test.rb"=>{}, "/test"=>{}})
+    end
     
     
   end
   
   describe '#start_config' do
+    #create_config_hash = start_config @config_hash
+      it 'port configruation for starting container' do 
+      expect((start_config @config_hash['port_test'])["PortBindings"]).to eq({"5432/tcp"=>[{ "HostPort"=> "5432" }], "22/tcp"=>[{ "HostPort"=> "3001" }]})
+    end
     
+     it 'port attribute should be removed starting container' do 
+      expect((start_config @config_hash['port_test'])["Ports"]).to eq nil
+    end
+    
+    it 'volume configruation for starting container' do 
+      expect((create_config @config_hash['volume_test'])["Binds"]).to eq(["/root/hello_docker:/root/hello_docker:wr","/root/test.rb:/test.rb:ro","/nc_server:/test:wr"])
+    end
+    
+     it 'volume attribute should be removed starting container' do 
+      expect((create_config @config_hash['volume_test'])["Volumes"]).to eq nil
+    end
   end
   
 end
