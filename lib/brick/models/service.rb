@@ -99,6 +99,10 @@ module Brick
           return
         end
         
+        unless volumes_from.nil?
+          volumes_from.each{|vo| vo.run enable_link}
+        end
+        
         if enable_link and !links.nil?
           links.each{|linked_service|
             linked_service.run enable_link
