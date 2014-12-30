@@ -1,0 +1,13 @@
+--- 
+data_container:
+  image: ubuntu:latest
+  volumes:
+    - /hello_docker
+    - /tmp/test.rb:/test.rb:ro
+    - /tmp:/test
+app_container:
+  image: "rastasheep/ubuntu-sshd:14.04"
+  ports:
+    - "3005:22"
+  volumes_from:
+    - data_container
