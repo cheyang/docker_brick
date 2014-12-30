@@ -88,7 +88,7 @@ module Brick
       #if the container is not started, start it
       def run config_hash, name=nil
         #byebug        
-        container = get_container name
+        container = get_container_by_name name
         
         
         if container.nil?
@@ -109,7 +109,7 @@ module Brick
         container
       end
       
-      def get_container  name=nil
+      def get_container_by_name  name=nil
         
         container = nil
         
@@ -121,7 +121,7 @@ module Brick
         
       end
       
-      def get_container id
+      def get_container_by_id id
         ::Docker::Container.get(id,connection)
       end
       
