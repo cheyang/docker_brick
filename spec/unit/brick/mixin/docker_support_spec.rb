@@ -55,11 +55,11 @@ describe Brick::Mixin::DockerSupport do
     end
     
     it 'volume configruation for starting container' do 
-      expect((create_config @config_hash['volume_test'])["Binds"]).to eq(["/root/hello_docker:/root/hello_docker:wr","/root/test.rb:/test.rb:ro","/nc_server:/test:wr"])
+      expect((start_config @config_hash['volume_test'])["Binds"]).to eq(["/root/hello_docker:/root/hello_docker:wr","/root/test.rb:/test.rb:ro","/nc_server:/test:wr"])
     end
     
      it 'volume attribute should be removed starting container' do 
-      expect((create_config @config_hash['volume_test'])["Volumes"]).to eq nil
+      expect((start_config @config_hash['volume_test'])["Volumes"]).to eq nil
     end
   end
   
