@@ -5,7 +5,7 @@ module Brick::Mixin
     
     #from yml file to the configuration for creating container
     def create_config hash
-      transform_docker_hash hash
+      hash=transform_docker_hash hash
       
       create_config_for_port hash
       
@@ -15,7 +15,7 @@ module Brick::Mixin
     end
     
     def start_config hash
-      transform_docker_hash hash
+      hash=transform_docker_hash hash
       
       start_config_for_port hash
       
