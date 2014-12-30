@@ -126,7 +126,7 @@ module Brick
       end
       
       def container_info
-         (Client.get_container_by_id(container.id)).info rescue {}
+         (client.get_container_by_id(container.id)).info rescue {}
       end
       
     end
