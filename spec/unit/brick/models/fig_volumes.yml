@@ -8,3 +8,17 @@ test_volume:
     - /root/hello_docker
     - /root/test.rb:/test.rb:ro
     - /nc_server:/test
+data_container:
+  image: ubuntu:latest
+env_array:
+  environment:
+    - ABC=development
+    - CYCY=TEST
+env_hash:
+   environment:
+    ABC: test
+    CDE: cycy  
+command_test:
+   image: "rastasheep/ubuntu-sshd:14.04"
+   command: /bin/bash -c 'while true; do env; sleep 1; done'
+  
