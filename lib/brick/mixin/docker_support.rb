@@ -9,7 +9,7 @@ module Brick::Mixin
       
       create_config_for_port hash
       
-      create_config_for_volume hash
+      create_config_for_volumes hash
       
       hash
     end
