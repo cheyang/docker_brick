@@ -110,7 +110,7 @@ module Brick
         end
         
         if container.nil?       
-          @container = client.run @service_config_hash, name        
+          self.container = client.run @service_config_hash, name        
         else
           container.start
         end
@@ -125,7 +125,9 @@ module Brick
         is_running
       end
       
-     
+      def container_info
+         container.json rescue {}
+      end
       
     end
   end  
