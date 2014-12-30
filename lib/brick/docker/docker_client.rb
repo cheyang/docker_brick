@@ -121,6 +121,10 @@ module Brick
         
       end
       
+      def get_container id
+        ::Docker::Container.get(id,connection)
+      end
+      
     end
   end
 end
