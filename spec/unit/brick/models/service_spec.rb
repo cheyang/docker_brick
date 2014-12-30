@@ -4,6 +4,8 @@ include Brick::Mixin::YamlHelper
 describe Brick::Models::Service do
   
   before :all do
+    `docker stop $(docker ps -aq)`
+     `docker rm $(docker ps -aq)`    
     @client = Brick::Docker::DockerClient::default
    `mkdir -p /hello_docker`
    `echo hello > /tmp/test.rb`

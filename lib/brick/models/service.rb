@@ -43,9 +43,9 @@ module Brick
                             
                             #only one part
                             if vo_parts.size == 1
-                              new_vo = "#{services[vo_parts[0]]}:rw"
+                              new_vo = "#{services[vo_parts[0]].name}:rw"
                             else
-                              new_vo=  "#{services[vo_parts[0]]}:#{vo_parts[1]}"
+                              new_vo=  "#{services[vo_parts[0]].name}:#{vo_parts[1]}"
                             end
                             
                             new_volumes_from<< services[vo_parts[0]]
