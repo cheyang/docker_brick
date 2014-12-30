@@ -20,10 +20,7 @@ describe Brick::Models::Service do
      it 'if it has volumes config' do
         fig_volumes.run
         
-        expect(fig_volumes.container_info["Volumes"]).to eq({"/hello_docker"=> "/hello_docker",
-        "/test"=> "/tmp",
-        "/test.rb"=> "/tmp/test.rb"
-        })
+        expect(fig_volumes.container_info["Volumes"]).to eq({"/root/hello_docker"=>"/root/hello_docker", "/test"=>"/nc_server", "/test.rb"=>"/root/test.rb"})
      end
   end
   
@@ -46,7 +43,7 @@ describe Brick::Models::Service do
         "/test.rb"=> "/tmp/test.rb"
         })
         
-        expect(data_container.container_info["VolumesFrom"]).to eq(["data_container:rw"])
+        expect(data_container.container_info["HostConfig"]["VolumesFrom"]).to eq(["data_container:rw"])
      end
    end
   
