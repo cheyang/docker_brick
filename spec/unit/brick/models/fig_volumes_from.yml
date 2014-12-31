@@ -12,3 +12,5 @@ app_container:
     - "3005:22"
   volumes_from:
     - data_container
+interactive_container:
+  command: /bin/bash

@@ -47,5 +47,14 @@ describe Brick::Models::Service do
      end
    end
   
+  
+  describe 'test interactive container' do
+     config_hash = load_yaml_file File.join(File.dirname(__FILE__),'fig_volumes_from.yml' )
+     config_hash.merge!({"tty"=>true, "open_stdin"=>true})
+     
+     subject(:interactive_container) { described_class.new("interactive_container", config_hash["interactive_container"],@client ) }
+     
+     interactive_container.run
+  end
 end
 
