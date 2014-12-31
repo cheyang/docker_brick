@@ -71,7 +71,7 @@ describe Brick::Models::Service do
     context "build image from relative path" do
       
       it "build image from docker file" do
-        build_image.build "test_build_image",false, File.dirname(__FILE__) 
+        build_image.build "test_build_image",true, File.dirname(__FILE__) 
       end
       
     end
