@@ -15,3 +15,5 @@ app_container:
 interactive_container:
   image: ubuntu:latest
   command: /bin/bash
+  tty: true
+  open_stdin: true
