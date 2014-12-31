@@ -54,9 +54,12 @@ describe Brick::Models::Service do
      
      subject(:interactive_container) { described_class.new("interactive_container", config_hash["interactive_container"],@client ) }
      it 'interactive container' do
+          local_logger=Docker.logger
+          Docker.logger=nil
           interactive_container.run
           
           interactive_container.attach
+          Docker.logger=local_logger
      end
   end
 end
