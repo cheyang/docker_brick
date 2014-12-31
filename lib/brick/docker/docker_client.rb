@@ -140,7 +140,7 @@ module Brick
         
         dockerfile_path = determine_dockerfile_path(dockerfile_path, project_dir)
         
-        image = ::Docker::Image.build_from_dir(dockerfile_path, {"t"=>image_name, "nocache" =>no_cache }) { |chunk| h = JSON.pars(chunk); puts(URI.unescape(h.values[0])) }
+        image = ::Docker::Image.build_from_dir(dockerfile_path, {"t"=>image_name, "nocache" =>no_cache }) { |chunk| h = ::JSON.parse(chunk); puts(::URI.unescape(h.values[0])) }
         
         image
       end
