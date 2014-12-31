@@ -53,8 +53,9 @@ describe Brick::Models::Service do
      config_hash.merge!({"tty"=>true, "open_stdin"=>true})
      
      subject(:interactive_container) { described_class.new("interactive_container", config_hash["interactive_container"],@client ) }
-     
-     interactive_container.run
+     it 'interactive container' do
+          interactive_container.run
+     end
   end
 end
 
