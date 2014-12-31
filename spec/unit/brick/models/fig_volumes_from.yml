@@ -13,4 +13,5 @@ app_container:
   volumes_from:
     - data_container
 interactive_container:
+  image: ubuntu:latest
   command: /bin/bash
