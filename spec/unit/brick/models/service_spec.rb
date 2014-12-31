@@ -55,6 +55,8 @@ describe Brick::Models::Service do
      subject(:interactive_container) { described_class.new("interactive_container", config_hash["interactive_container"],@client ) }
      it 'interactive container' do
           interactive_container.run
+          
+          interactive_container.container.attach(stdin=> STDIN,stdout=> STDOUT)
      end
   end
 end
