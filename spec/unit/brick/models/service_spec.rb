@@ -58,9 +58,23 @@ describe Brick::Models::Service do
           Docker.logger=nil
           interactive_container.run
           
-          interactive_container.attach
+          #interactive_container.attach
           Docker.logger=local_logger
      end
+ end
+ 
+  describe '.build' do
+    config_hash = load_yaml_file File.join(File.dirname(__FILE__),'fig_build.yml' )
+    
+    subject(:build_image) { described_class.new("build_image", config_hash["build_image"],@client ) }
+    
+    context "build image from relative path" do
+      
+      it "build image from docker file" do
+        build_image.build "test_build_image",false, File.join(File.dirname(__FILE__),'dockerfile' )
+      end
+      
+    end
   end
 end
 

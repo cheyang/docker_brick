@@ -4,7 +4,7 @@ module Brick
   module Models
     class Service
       
-      attr_accessor :client, :name, :links, :service_config_hash, :container, :volumes_from
+      attr_accessor :client, :name, :links, :service_config_hash, :container, :volumes_from, :image
       
       def initialize(name, config, client)
         self.name = name
@@ -133,6 +133,29 @@ module Brick
       def attach
         container.attach(:stdin => STDIN, :tty => true){|message| print "#{message}" }
       end
+      
+      
+      def can_be_built
+        !service_config_hash["build"].nil?
+      end
+      
+      def build image_name=nil, no_cache=false, project_dir=nil
+        
+         if image_name.nil?
+          image_name = name
+        end
+        
+        if can_be_built
+            self.image = client.build_from_dir({:image_name => image_name,
+                                                :no_cache => no_cache,
+                                                :project_dir=>project_dir,
+                                                :build_dir=>service_config_hash["build"]})
+        else
+          Brick::CLI::logger.debug "no build defintion for #{image_build},skip it"
+        end
+        self.image
+      end
+      
     end
   end  
 end

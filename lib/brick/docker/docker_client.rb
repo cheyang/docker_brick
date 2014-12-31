@@ -125,6 +125,26 @@ module Brick
         ::Docker::Container.get(id,connection)
       end
       
+      
+      def build_from_dir options={}
+        
+        image_name = option[:image_name]
+        
+        dockerfile_path = options[:build_dir]
+        
+        project_dir = options[:project_dir]
+        
+        no_cache = options[:no_cache]
+        
+        dockerfile_path = determine_dockerfile_path(dockerfile_path, project_dir)
+        
+        image = Docker::Image.build_from_dir(dockerfile_path, {"t"=>image_name, "nocache" =>no_cache }) 
+        
+        #{ |chunk| puts chunk }
+        
+        image
+      end
+      
     end
   end
 end

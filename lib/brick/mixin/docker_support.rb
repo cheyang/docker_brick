@@ -1,4 +1,5 @@
 require 'shellwords'
+require 'pathname'
 
 module Brick::Mixin
   module DockerSupport
@@ -211,6 +212,21 @@ module Brick::Mixin
         hash["PortBindings"]=port_bindings
       end
       hash
+    end
+    
+    def determine_dockerfile_path dockerfile_path, project_dir
+      
+      pathname= Pathname.new(dockerfile_path)
+      
+      if pathname.absolute?
+        real_dockerfile_path = dockerfile_path
+      else
+        unless project_dir.nil?
+          real_dockerfile_path = File.absolute_path(File.join(project_dir, dockerfile_path))
+        end
+      end
+      
+      real_dockerfile_path
     end
     
   end
