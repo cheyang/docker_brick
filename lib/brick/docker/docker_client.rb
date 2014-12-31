@@ -128,7 +128,7 @@ module Brick
       
       def build_from_dir options={}
         
-        image_name = option[:image_name]
+        image_name = options[:image_name]
         
         dockerfile_path = options[:build_dir]
         
