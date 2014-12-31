@@ -138,7 +138,9 @@ module Brick
         
         dockerfile_path = determine_dockerfile_path(dockerfile_path, project_dir)
         
-        image = ::Docker::Image.build_from_dir(dockerfile_path, {"t"=>image_name, "nocache" =>no_cache }) { |chunk| puts chunk; puts chunk.class}
+        messages = ::Docker::Messages.new
+        
+        image = ::Docker::Image.build_from_dir(dockerfile_path, {"t"=>image_name, "nocache" =>no_cache }) { |chunk| puts messages.get_message(chunk) }
         
         image
       end
