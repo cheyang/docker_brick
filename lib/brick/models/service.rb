@@ -129,6 +129,10 @@ module Brick
          (client.get_container_by_id(container.id)).info rescue {}
       end
       
+      
+      def attach
+        container.attach(:stdin => STDIN, :tty => true){|message| print "#{message}" }
+      end
     end
   end  
 end

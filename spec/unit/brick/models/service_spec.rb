@@ -56,7 +56,7 @@ describe Brick::Models::Service do
      it 'interactive container' do
           interactive_container.run
           
-          interactive_container.container.attach(:stdin=> STDIN,:stdout=> STDOUT)
+          interactive_container.attach
      end
   end
 end
