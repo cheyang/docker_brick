@@ -19,7 +19,7 @@ module Brick
     
     def self.print_help_and_exit(exitcode=1, fatal_message=nil)
       Brick::CLI::logger.error(fatal_message) if fatal_message
-      
+      Brick::CLI.list_parameters
       Brick::CLI.list_commands
       exit exitcode
     end

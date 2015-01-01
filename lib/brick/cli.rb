@@ -189,5 +189,8 @@ module Brick
       end
     end
     
+    def self.list_parameters
+      logger.info self.opt_parser
+    end
   end
 end
