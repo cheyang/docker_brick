@@ -1,8 +1,7 @@
 
 
 require 'brick/version'
-module Brick
-  class CLI
+module Brick::CLI
     class SubcommandLoader
 
      
@@ -38,5 +37,4 @@ module Brick
    
 
     end
-  end
 end

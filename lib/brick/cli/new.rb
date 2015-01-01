@@ -1,5 +1,5 @@
-module Brick
-  class CLI
+module Brick::CLI
+  
     class New < CLI
       banner 'brick new MODEL(options)'
       
@@ -8,5 +8,5 @@ module Brick
       end
       
     end
-  end
+  
 end

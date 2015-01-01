@@ -1,7 +1,7 @@
 require 'brick/cli'
 
-module Brick
-  class CLI
+module Brick::CLI
+  
     class ModelCreate < CLI
       
       
@@ -13,5 +13,5 @@ module Brick
       end
       
     end
-  end
+  
 end
