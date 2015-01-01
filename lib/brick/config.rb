@@ -1,8 +1,7 @@
-require 'mixlib/config'
 
 module Brick
   class Config
-    extend Mixlib::Config
+    extend ::Mixlib::Config
     
     
   end
