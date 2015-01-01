@@ -2,10 +2,10 @@ require 'mixlib/cli'
 require 'brick/mixin'
 
 module Brick
-  class CLI
+  class CLI < Application
     
     extend Brick::Mixin::ConvertToClassName
-    include Mixlib::CLI
+    #include Mixlib::CLI
     
     
     def self.logger
@@ -35,6 +35,8 @@ module Brick
     # options::: A Mixlib::CLI option parser hash. These +options+ are how
     # subcommands know about global knife CLI options
     def self.run(args, options={})
+      #configure brick for common attributes
+      configure_brick
       CLI_Validator::validate
       #logger.info "begin to run the comand #{args}"
       load_commands
@@ -42,6 +44,7 @@ module Brick
       subcommand_class.options = options.merge!(subcommand_class.options)
       subcommand_class.load_deps
       instance = subcommand_class.new(args)
+      instance.configure_brick
       instance.run_with_pretty_exceptions
     end
     
@@ -163,9 +166,9 @@ module Brick
       
     end
     
-    def run_with_pretty_exceptions
+    def configure_brick_with_pretty_exceptions
       unless self.respond_to?(:run)
-        logger.error "You need to add a #run method to your knife command before you can use it"
+        logger.error "You need to add a #run method to your brick command before you can use it"
       end
       run
     rescue Exception => e

@@ -15,6 +15,8 @@ require 'brick/monkey_patches'
 
 require 'brick/mixin'
 
+require 'brick/config'
+
 require 'excon'
 
 
