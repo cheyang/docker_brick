@@ -2,7 +2,7 @@ require 'fileutils'
 require 'mixlib/cli'
 
 module Brick
-  class Application
+  module Application
     include ::Mixlib::CLI
     
     option :config_file, 
@@ -30,5 +30,6 @@ module Brick
       parse_options
       Brick::Config.merge!(config)
     end
+    
   end
 end

@@ -36,7 +36,7 @@ module Brick
     # subcommands know about global knife CLI options
     def self.run(args, options={})
       #configure brick for common attributes
-      Application.new.configure_brick
+      configure_brick
       CLI_Validator::validate
       #logger.info "begin to run the comand #{args}"
       load_commands
@@ -166,7 +166,8 @@ module Brick
       
     end
     
-    def configure_brick_with_pretty_exceptions
+  
+    def run_with_pretty_exceptions
       unless self.respond_to?(:run)
         logger.error "You need to add a #run method to your brick command before you can use it"
       end
