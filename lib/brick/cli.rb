@@ -1,5 +1,5 @@
 require 'mixlib/cli'
-
+require 'brick/application'
 
 module Brick
   class CLI < Application
