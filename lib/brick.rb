@@ -2,6 +2,8 @@ require "brick/version"
 
 require "brick/cli/core/subcommand_loader"
 
+require 'mixlib/cli'
+
 require 'brick/application'
 
 require 'brick/mixin'
