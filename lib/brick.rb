@@ -1,15 +1,15 @@
 require "brick/version"
 
+require 'brick/mixin'
+
 require "brick/cli"
 
 require "brick/cli/core/subcommand_loader"
 
 
-
-
 require 'brick/application'
 
-require 'brick/mixin'
+
 
 require 'brick/config'
 
