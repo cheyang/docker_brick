@@ -1,7 +1,7 @@
 require 'fileutils'
 
 module Brick
-  class Aplication
+  class Application
     include Mixlib::CLI
     
     option :config_file, 
