@@ -19,4 +19,6 @@ require 'brick/config'
 
 require 'excon'
 
+require 'brick/application'
+
 
