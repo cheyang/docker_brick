@@ -1,8 +1,9 @@
 require 'fileutils'
+require 'mixlib/cli'
 
 module Brick
   class Application
-    include Mixlib::CLI
+    include ::Mixlib::CLI
     
     option :config_file, 
     :short => "-f FILE",
