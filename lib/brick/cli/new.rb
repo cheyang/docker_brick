@@ -1,4 +1,4 @@
-module Brick::CLI
+class Brick::CLI
   
     class New < CLI
       banner 'brick new MODEL(options)'

@@ -1,8 +1,6 @@
 require 'brick/cli'
 
-module Brick::CLI
-  
-    class ModelCreate < CLI
+class Brick::CLI::ModelCreate < CLI
       
       
       #it's from Mixlib::CLI
@@ -11,7 +9,6 @@ module Brick::CLI
       def run
         CLI::logger.info "hello, #{banner}"
       end
-      
-    end
+
   
 end

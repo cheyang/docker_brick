@@ -1,8 +1,7 @@
 
 
 require 'brick/version'
-module Brick::CLI
-    class SubcommandLoader
+class Brick::CLI::SubcommandLoader
 
      
       attr_reader :env
@@ -36,5 +35,5 @@ module Brick::CLI
 
    
 
-    end
+    
 end
