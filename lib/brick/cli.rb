@@ -5,8 +5,8 @@ module Brick
   class CLI
     
     extend Brick::Mixin::ConvertToClassName
-    #include Mixlib::CLI
-    include Application
+    include Mixlib::CLI
+    #include Application
     
     def self.logger
       @@logger ||= Logger.new(STDOUT)
@@ -36,7 +36,7 @@ module Brick
     # subcommands know about global knife CLI options
     def self.run(args, options={})
       #configure brick for common attributes
-      configure_brick
+      Application.new.configure_brick
       CLI_Validator::validate
       #logger.info "begin to run the comand #{args}"
       load_commands
@@ -192,6 +192,11 @@ module Brick
     
     def self.list_parameters
       logger.info self.opt_parser
+    end
+    
+     def configure_brick
+      parse_options
+      Brick::Config.merge!(config)
     end
   end
 end
