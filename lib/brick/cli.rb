@@ -2,10 +2,10 @@ require 'mixlib/cli'
 require 'brick/application'
 
 module Brick
-  class CLI < Application
+  class CLI
     
     extend Brick::Mixin::ConvertToClassName
-    #include Mixlib::CLI
+    include Mixlib::CLI
     #include Application
     
     
