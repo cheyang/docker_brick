@@ -1,6 +1,8 @@
+require 'brick/cli'
+
 class Brick::CLI
   
-    class New < CLI
+    class New < Brick::CLI
       banner 'brick new MODEL(options)'
       
       def run

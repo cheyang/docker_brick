@@ -1,7 +1,7 @@
 require 'brick/cli'
 
 class Brick::CLI
-  class ModelCreate < CLI
+  class ModelCreate < Brick::CLI
     
     
     #it's from Mixlib::CLI
