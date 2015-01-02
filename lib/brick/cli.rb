@@ -43,7 +43,7 @@ module Brick
       #logger.info "begin to run the comand #{args}"
       load_commands
       subcommand_class = subcommand_class_from(args)
-      subcommand_class.options = options.merge!(subcommand_class.options)
+      subcommand_class.options = common_optparser.class.options.merge!(subcommand_class.options)
       subcommand_class.load_deps
       instance = subcommand_class.new(args)
       #instance.configure_brick
