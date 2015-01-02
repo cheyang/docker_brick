@@ -209,7 +209,7 @@ module Brick
       begin
       parse_options
       rescue => error
-        logger.error e.message
+        self::logger.error e.message
         exit 1
       end
       Brick::Config.merge!(config)
