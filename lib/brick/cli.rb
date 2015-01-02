@@ -8,6 +8,7 @@ module Brick
     include Mixlib::CLI
     #include Application
     
+    
     def self.logger
       @@logger ||= Logger.new(STDOUT)
       @@logger.level = Logger::INFO
@@ -36,7 +37,7 @@ module Brick
     # subcommands know about global knife CLI options
     def self.run(args, options={})
       #configure brick for common attributes
-      Application.new.configure_brick
+      common_optparser.configure_brick
       CLI_Validator::validate
       #logger.info "begin to run the comand #{args}"
       load_commands
@@ -46,6 +47,10 @@ module Brick
       instance = subcommand_class.new(args)
       instance.configure_brick
       instance.run_with_pretty_exceptions
+    end
+    
+    def self.common_optparser
+      @@common_optparser ||= Application.new
     end
     
     def self.subcommand_class_from(args)
@@ -76,6 +81,12 @@ module Brick
       
 
       exit 10
+    end
+    
+    def self.list_parameters
+      
+      puts "USAGE: " + common_optparser.opt_parser.to_s
+      
     end
     
      # is given, only subcommands in that category are shown
@@ -190,8 +201,8 @@ module Brick
       end
     end
     
-    def self.list_parameters
-      logger.info self.opt_parser
+   def show_usage
+      stdout.puts("USAGE: " + self.opt_parser.to_s)
     end
     
      def configure_brick
