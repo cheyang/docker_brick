@@ -1,5 +1,5 @@
 require 'brick/cli'
-require 'brick/cli_validator'
+require 'brick/cli__validator'
 
 class Brick::CLI
   
