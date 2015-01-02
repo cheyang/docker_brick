@@ -85,7 +85,7 @@ module Brick
     
     def self.list_parameters
       
-      puts "USAGE: " + common_optparser.opt_parser.to_s
+      puts common_optparser.opt_parser.to_s
       
     end
     
@@ -202,7 +202,8 @@ module Brick
     end
     
    def show_usage
-      stdout.puts("USAGE: " + self.opt_parser.to_s)
+      stdout.puts( self.opt_parser.to_s)
+      stdout.puts( )
     end
     
      def configure_brick
