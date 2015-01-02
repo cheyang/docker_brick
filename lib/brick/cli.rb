@@ -38,6 +38,7 @@ module Brick
     def self.run(args, options={})
       #configure brick for common attributes
       common_optparser.configure_brick
+      common_optparser.banner "Usage: brick SUBCOMMAND (options)"
       CLI_Validator::validate
       #logger.info "begin to run the comand #{args}"
       load_commands
@@ -84,7 +85,6 @@ module Brick
     end
     
     def self.list_parameters
-      
       puts common_optparser.opt_parser.to_s
       puts ""
     end
