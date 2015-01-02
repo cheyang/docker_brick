@@ -85,8 +85,8 @@ module Brick
     
     def self.list_parameters
       
-      puts common_optparser.opt_parser.to_s
-      
+      stdout.puts common_optparser.opt_parser.to_s
+      stdout.puts( )
     end
     
      # is given, only subcommands in that category are shown
@@ -203,7 +203,6 @@ module Brick
     
    def show_usage
       stdout.puts( self.opt_parser.to_s)
-      stdout.puts( )
     end
     
      def configure_brick
