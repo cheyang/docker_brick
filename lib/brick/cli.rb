@@ -208,7 +208,7 @@ module Brick
      def configure_brick
       begin
       parse_options
-      rescue => error
+      rescue => e
         ::Brick::CLI::logger.error e.message
         exit 1
       end
