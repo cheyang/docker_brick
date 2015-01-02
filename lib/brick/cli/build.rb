@@ -1,6 +1,6 @@
 require 'brick/cli'
 
-class Brick::CLI::Build
+class Brick::CLI::Build < Brick::CLI
   banner 'brick build'
   
   option :no_cache, 
