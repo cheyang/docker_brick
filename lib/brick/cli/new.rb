@@ -3,7 +3,7 @@ require 'brick/cli'
 class Brick::CLI
   
     class New < Brick::CLI
-      banner 'brick new MODEL(options)'
+      banner 'brick new PROJECT(options)'
       
       def run
         CLI::logger.info "hello, #{banner}"
