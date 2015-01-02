@@ -37,7 +37,7 @@ module Brick
     # subcommands know about global knife CLI options
     def self.run(args, options={})
       #configure brick for common attributes
-      common_optparser.configure_brick
+      #common_optparser.configure_brick
       common_optparser.opt_parser.banner="Usage: brick SUBCOMMAND (options)"
       CLI_Validator::validate
       #logger.info "begin to run the comand #{args}"
@@ -160,13 +160,13 @@ module Brick
     
     def initialize(argv=[])
       
-      super() 
-      command_name_words = self.class.snake_case_name.split('_')
+      #super() 
+      #command_name_words = self.class.snake_case_name.split('_')
       
       # Mixlib::CLI ignores the embedded name_args
-      @name_args = parse_options(ARGV)
-      @name_args.delete(command_name_words.join('-'))
-      @name_args.reject! { |name_arg| command_name_words.delete(name_arg) }
+      #@name_args = parse_options(ARGV)
+      #@name_args.delete(command_name_words.join('-'))
+      #@name_args.reject! { |name_arg| command_name_words.delete(name_arg) }
 
 =begin
       if config[:help]
@@ -206,7 +206,12 @@ module Brick
     end
     
      def configure_brick
+      begin
       parse_options
+      rescue => error
+        logger.error e.message
+        exit 1
+      end
       Brick::Config.merge!(config)
     end
   end
