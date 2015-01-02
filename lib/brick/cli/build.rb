@@ -10,7 +10,7 @@ class Brick::CLI::Build
     :description => "Do not use cache when building the image."
     
     def run
-      CLI::logger.info "hello, #{banner}, option[:no_cache]=#{:no_cache}"
+      CLI::logger.info "hello, #{banner}, option[:no_cache]=#{::Brick::Config}"
     end
     
 end
