@@ -27,7 +27,7 @@ class Brick::CLI::SubcommandLoader
         files = Dir[File.expand_path('../../../cli/*.rb', __FILE__)]
         subcommand_files = {}
         files.each do |cli_file|
-          rel_path = cli_file[/#{BRICK_ROOT}#{Regexp.escape(File::SEPARATOR)}(.*)\.rb/,1]
+          rel_path = cli_file[/#{::Brick::BRICK_ROOT}#{Regexp.escape(File::SEPARATOR)}(.*)\.rb/,1]
           subcommand_files[rel_path] = cli_file
         end
         subcommand_files
