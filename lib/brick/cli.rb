@@ -206,12 +206,12 @@ module Brick
     end
     
      def configure_brick
-      begin
+#      begin
       parse_options
-      rescue => e
-        ::Brick::CLI::logger.error e.message
-        exit 1
-      end
+#     rescue => e
+#        ::Brick::CLI::logger.error e.message
+#        exit 1
+#      end
       Brick::Config.merge!(config)
     end
   end
