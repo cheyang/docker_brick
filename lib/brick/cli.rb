@@ -2,11 +2,11 @@ require 'mixlib/cli'
 require 'brick/application'
 
 module Brick
-  class CLI
+  class CLI < Application
     
     extend Brick::Mixin::ConvertToClassName
     #include Mixlib::CLI
-    include Application
+    #include Application
     
     
     def self.logger
