@@ -5,8 +5,8 @@ module Brick
   class CLI
     
     extend Brick::Mixin::ConvertToClassName
-    include Mixlib::CLI
-    #include Application
+    #include Mixlib::CLI
+    include Application
     
     
     def self.logger
