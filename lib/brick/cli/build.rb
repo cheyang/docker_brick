@@ -4,6 +4,7 @@ class Brick::CLI::Build < Brick::CLI
   banner 'brick build'
   
   option :no_cache, 
+    :short => "-N",
     :long  => "--no-cache",
     :default => false,
     :boolean => true,

@@ -7,7 +7,7 @@ module Brick
     
     option :config_file, 
     :short => "-f FILE",
-    :long  => "--file CONFIG",
+    :long  => "--file FILE",
     :default => File.join(FileUtils.pwd, 'fig.yml'),
     :description => "The configuration file to deploy the project"
     
