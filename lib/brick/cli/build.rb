@@ -3,7 +3,7 @@ require 'brick/cli'
 class Brick::CLI::Build < Brick::CLI
   banner 'brick build'
   
-  option :no_cache, 
+  option :no-cache, 
     :short => "-N",
     :long  => "--no-cache",
     :default => false,
@@ -18,7 +18,7 @@ class Brick::CLI::Build < Brick::CLI
       
       project_dir = File.dirname(config_file)
       
-      no_cache = ::Brick::Config[:no_cache]
+      no_cache = ::Brick::Config[:no-cache]
       
       project = ::Brick::Models::Project.new(project_name,{:config_file => config_file})
       
