@@ -145,7 +145,7 @@ module Brick
           image_name = name
         end
         
-        if can_be_built
+        if can_be_built?
             self.image = client.build_from_dir({:image_name => image_name,
                                                 :no_cache => no_cache,
                                                 :project_dir=>project_dir,
