@@ -78,7 +78,7 @@ module Brick
       end
       
       def build_services no_cache=false, project_dir=nil
-        self.services.each{|key| service= services[key]
+        self.services.each_key{|key| service= services[key]
           
           
           if service.can_be_built?
