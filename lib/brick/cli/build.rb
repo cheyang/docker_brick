@@ -5,7 +5,7 @@ class Brick::CLI::Build < Brick::CLI
   
   option :cache, 
     :long  => "--[no-]cache",
-    :default => false,
+    :default => true,
     :boolean => true,
     :description => "Do not use cache when building the image."
     
