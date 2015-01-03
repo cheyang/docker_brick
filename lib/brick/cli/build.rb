@@ -12,7 +12,17 @@ class Brick::CLI::Build < Brick::CLI
     
     def run
       #::Brick::CLI::logger.info "hello, #{banner}, option[:no_cache]=#{::Brick::Config.configuration}"
+      project_name = ::Brick::Config[:project]
       
+      config_file = ::Brick::Config[:config_file]
+      
+      project_dir = File.dirname(config_file)
+      
+      no_cache = ::Brick::Config[:no_cache]
+      
+      project = Project.new(project_name,{:config_file => config_file})
+      
+      project.build_services(no_cache, project_dir)
       
     end
     
