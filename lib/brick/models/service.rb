@@ -135,7 +135,7 @@ module Brick
       end
       
       
-      def can_be_built
+      def can_be_built?
         !service_config_hash["build"].nil?
       end
       

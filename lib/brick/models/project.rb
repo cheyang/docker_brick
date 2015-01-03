@@ -77,6 +77,19 @@ module Brick
         
       end
       
+      def build_services no_cache=false, project_dir=nil
+        self.services.each{|key| service= services[key]
+          
+          
+          if service.can_be_built?
+            service.build("#{self.name}_#{key}",no_cache,project_dir)
+          else
+            ::Brick::CLI::logger.info("uses an image, skipping #{key}")
+          end
+          
+        }
+      end
+      
     end
   end  
 end
