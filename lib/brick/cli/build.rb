@@ -20,7 +20,7 @@ class Brick::CLI::Build < Brick::CLI
       
       no_cache = ::Brick::Config[:no_cache]
       
-      project = Project.new(project_name,{:config_file => config_file})
+      project = ::Brick::Models::Project.new(project_name,{:config_file => config_file})
       
       project.build_services(no_cache, project_dir)
       
