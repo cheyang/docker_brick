@@ -155,8 +155,11 @@ module Brick
       
       
       def attach
+        
+        Thread.new{
         puts "Attaching to service #{name}"
         container.attach(:stdin => STDIN, :tty => true){|message| print "#{color_generator(name)} | #{message}" }
+        }
       end
       
       
