@@ -68,7 +68,15 @@ module Brick
       def up(detach_mode = true, include_link=true, recreate=false)
           
           self.services.each_key{|key| service= services[key]
+          
+             
               
+              if service.can_be_built?
+                unless service.image_exist?
+                  #recreate indicates no_cache
+                  service.build nil, recreate, ::Brick::Config[:project_dir]
+                end
+              end
              
           }
       end

@@ -168,7 +168,14 @@ module Brick
       @name_args.delete(command_name_words.join('-'))
       @name_args.reject! { |name_arg| command_name_words.delete(name_arg) }
       Brick::Config.merge!(config)
-
+      
+      project_name = ::Brick::Config[:project]
+      
+      config_file = ::Brick::Config[:config_file]
+      
+      project_dir = File.dirname(config_file)
+      
+      ::Brick::Config[:project_dir] = project_dir
 =begin
       if config[:help]
         logger.info opt_parser

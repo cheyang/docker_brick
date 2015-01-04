@@ -4,7 +4,7 @@ module Brick
   module Models
     class Service
       
-      attr_accessor :client, :name, :links, :service_config_hash, :container, :volumes_from, :image
+      attr_accessor :client, :name, :links, :service_config_hash, :container, :volumes_from, :image, :image_name
       
       def initialize(name, config, client)
         self.name = name
@@ -165,14 +165,14 @@ module Brick
         @skip == true
       end
       
-      def build image_name=nil, no_cache=false, project_dir=nil
+      def build name=nil, no_cache=false, project_dir=nil
         
-         if image_name.nil?
-          image_name = name
+         if name.nil?
+          name = self.image_name
         end
         
         if can_be_built?
-            self.image = client.build_from_dir({:image_name => image_name,
+            self.image = client.build_from_dir({:image_name => name,
                                                 :no_cache => no_cache,
                                                 :project_dir=>project_dir,
                                                 :build_dir=>service_config_hash["build"]})
@@ -182,17 +182,19 @@ module Brick
         self.image
       end
       
-      def image_exist? image_name
+      def image_exist? 
         ::Docker::Image.exist?(image_name)
       end
       
       #If it's using build tag, will create an actual image name for it.
       #For example, if project name is test, service name is web, the image name should 
       #be test_web
-      def update_image_for_building_tag image_name
+      def update_image_for_building_tag name
         if service_config_hash["build"].nil?
-          service_config_hash["image"]=image_name
+          service_config_hash["image"]=name
         end
+        
+        self.image_name = service_config_hash["image"]
       end
     end
   end  
