@@ -14,6 +14,9 @@ module Brick
         self.service_config_hash = config
         self.client = client
         #puts "client=#{client}"
+        
+        determine_color
+        
         unless config["links"].nil?         
           if  config["links"].instance_of?(String)
             self.links= [config["links"]]
