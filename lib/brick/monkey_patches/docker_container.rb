@@ -18,4 +18,11 @@ class Docker::Container
    running= Docker::Container.get(id).info["State"]["Running"] 
   end
   
+  # Check if an image exists.
+    def exist?(id, opts = {}, conn = Docker.connection)
+      get(id, opts, conn)
+      true
+    rescue Docker::Error::NotFoundError
+      false
+    end
 end

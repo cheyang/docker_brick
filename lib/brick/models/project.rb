@@ -69,6 +69,12 @@ module Brick
           
           self.services.each_key{|key| service= services[key]
           
+              if serivce.container_exist?
+                puts "Recreating #{name} ..."
+              else
+                puts "Creating #{name} ..."
+              end
+          
               if service.can_be_built?
                 unless service.image_exist?
                   # by default, not set cache
@@ -80,6 +86,8 @@ module Brick
               
               unless detach_mode
                 service.attach
+              else
+                puts "Service #{name} has been started"
               end
           }
       end

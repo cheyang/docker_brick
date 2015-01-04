@@ -97,8 +97,6 @@ module Brick
       #equals to "docker run"
       def run enable_link=true, recreate=true
         
-        puts "Creating #{name} ..."
-        
         if running? and (!recreate or can_be_skipped_this_time?)
           Brick::CLI::logger.debug "the service #{name} is already running. exited."
           return
@@ -190,6 +188,10 @@ module Brick
       
       def image_exist? 
         ::Docker::Image.exist?(image_name)
+      end
+      
+      def container_exist?
+        ::Docker::Container.exist?(name)
       end
       
       #If it's using build tag, will create an actual image name for it.
