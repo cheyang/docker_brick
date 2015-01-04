@@ -69,7 +69,7 @@ module Brick
           
           self.services.each_key{|key| service= services[key]
           
-              if serivce.container_exist?
+              if service.container_exist?
                 puts "Recreating #{name} ..."
               else
                 puts "Creating #{name} ..."
