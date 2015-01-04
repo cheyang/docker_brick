@@ -1,4 +1,5 @@
 require 'brick/mixin'
+require 'colorize'
 
 module Brick
   module Models
