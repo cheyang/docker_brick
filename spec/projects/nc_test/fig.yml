@@ -1,14 +1,14 @@
-nc_server:
-  build: ./nc_server
+ncserver:
+  build: ./ncserver
   ports:
     - "5432:8080"
   tty: true
   command: nc -l 8080
-nc_client:
+ncclient:
   image: rastasheep/ubuntu-sshd:14.04
   ports:
     - "3001:22"
   tty: true
   command: /usr/sbin/sshd -D
   links:
-    - nc_server
+    - ncserver
