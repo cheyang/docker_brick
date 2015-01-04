@@ -94,7 +94,7 @@ module Brick
       #equals to "docker run"
       def run enable_link=true, recreate=true
         
-        if running? and !recreate
+        if running? and (!recreate or can_be_skipped_this_time?)
           Brick::CLI::logger.debug "the service #{Name} is already running. exited."
           return
         end
@@ -116,6 +116,7 @@ module Brick
             end
             container.delete(:force => true)
             self.container=nil
+            skip_next_time
          end
         
         if container.nil?       
@@ -123,14 +124,22 @@ module Brick
         else
           container.start
         end
+        
+        
       end
       
       #Check if the container is running
       def running?
         is_running = false
+        
         unless container.nil?
-          is_running = container.is_running?
+          self.container = ::Docker::Container.get(name)
         end
+        
+        unless container.nil
+            is_running = container.is_running?
+        end
+        
         is_running
       end
       
@@ -146,6 +155,14 @@ module Brick
       
       def can_be_built?
         !service_config_hash["build"].nil?
+      end
+      
+      def skip_next_time
+        @skip = true
+      end
+      
+      def can_be_skipped_this_time?
+        @skip == true
       end
       
       def build image_name=nil, no_cache=false, project_dir=nil
@@ -165,6 +182,18 @@ module Brick
         self.image
       end
       
+      def image_exist? image_name
+        ::Docker::Image.exist?(image_name)
+      end
+      
+      #If it's using build tag, will create an actual image name for it.
+      #For example, if project name is test, service name is web, the image name should 
+      #be test_web
+      def update_image_for_building_tag image_name
+        if service_config_hash["build"].nil?
+          service_config_hash["image"]=image_name
+        end
+      end
     end
   end  
 end

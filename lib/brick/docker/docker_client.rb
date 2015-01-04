@@ -86,6 +86,7 @@ module Brick
         end
       end
       
+      
       #if the container is already existed, reuse it
       #if the container is not started, start it
       def run config_hash, name=nil

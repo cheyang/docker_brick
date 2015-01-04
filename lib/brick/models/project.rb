@@ -18,7 +18,7 @@ module Brick
            @config_file = options[:config_file]
          end
          
-          @docker_client = client ? client : Brick::Docker::DockerClient::default
+         @docker_client = client ? client : Brick::Docker::DockerClient::default
         
          init_services_from_config(@config_file)
                  
@@ -59,14 +59,20 @@ module Brick
             service = @services[key]
             service.update_links @services
             service.update_volumes_from @services
+            serivce.update_image_for_building_tag("#{self.name}_#{key}")
         }
         
       end
       
       
       def up(detach_mode = true, include_link=true, recreate=false)
-        
+          
+          self.services.each_key{|key| service= services[key]
+              
+             
+          }
       end
+      
       
       #create the service according to the service name
       def run_services(service_name, enable_link=true)
