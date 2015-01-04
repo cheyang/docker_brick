@@ -5,10 +5,10 @@ ncserver:
   tty: true
   command: nc -l 8080
 ncclient:
-  image: rastasheep/ubuntu-sshd:14.04
+  image: ubuntu:latest
   ports:
     - "3001:22"
   tty: true
-  command: /usr/sbin/sshd -D
+  command: /bin/bash
   links:
     - ncserver

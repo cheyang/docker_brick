@@ -79,7 +79,7 @@ module Brick
               service.run enable_link, recreate
               
               unless detach_mode
-                
+                service.attach
               end
           }
       end
