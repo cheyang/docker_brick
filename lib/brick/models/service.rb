@@ -92,9 +92,9 @@ module Brick
       end
       
       #equals to "docker run"
-      def run enable_link=true
+      def run enable_link=true, recreate=true
         
-        if running?
+        if running? and !recreate
           Brick::CLI::logger.debug "the service #{Name} is already running. exited."
           return
         end
@@ -108,6 +108,15 @@ module Brick
             linked_service.run enable_link
           }
         end
+        
+         if recreate
+          #if recreate is true, it will destory the old container, and create a new one
+            if running?
+              container.stop
+            end
+            container.delete(:force => true)
+            self.container=nil
+         end
         
         if container.nil?       
           self.container = client.run @service_config_hash, name        

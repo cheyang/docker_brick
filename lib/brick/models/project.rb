@@ -64,7 +64,7 @@ module Brick
       end
       
       
-      def up(include_link=true,restart=true)
+      def up(detach_mode = true, include_link=true, recreate=false)
         
       end
       
