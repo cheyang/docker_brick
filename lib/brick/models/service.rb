@@ -139,7 +139,7 @@ module Brick
           self.container = ::Docker::Container.get(name)
         end
         
-        unless container.nil
+        unless container.nil?
             is_running = container.is_running?
         end
         
