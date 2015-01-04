@@ -193,7 +193,7 @@ module Brick
       #For example, if project name is test, service name is web, the image name should 
       #be test_web
       def update_image_for_building_tag name
-        if service_config_hash["build"].nil?
+        unless service_config_hash["build"].nil?
           service_config_hash["image"]=name
         end
         
