@@ -70,9 +70,9 @@ module Brick
           self.services.each_key{|key| service= services[key]
           
               if service.container_exist?
-                puts "Recreating #{name} ..."
+                puts "Recreating #{service.name} ..."
               else
-                puts "Creating #{name} ..."
+                puts "Creating #{serivce.name} ..."
               end
           
               if service.can_be_built?
@@ -87,9 +87,11 @@ module Brick
               unless detach_mode
                 service.attach
               else
-                puts "Service #{name} has been started"
+                puts "Service #{service.name} has been started"
               end
           }
+          
+          
       end
       
       
