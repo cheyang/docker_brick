@@ -23,5 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "mixlib-cli", "~> 1.5"
   spec.add_dependency "docker-api", "~> 1.17"
   spec.add_dependency "mixlib-config", ">= 1.1.2", "~> 1.1"
+  spec.add_dependency 'colorize', '~> 0.7.5'
 #  spec.add_dependency "deepstruct", "~> 0.0.7"
 end
