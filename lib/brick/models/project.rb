@@ -59,7 +59,7 @@ module Brick
             service = @services[key]
             service.update_links @services
             service.update_volumes_from @services
-            serivce.update_image_for_building_tag("#{self.name}_#{key}")
+            service.update_image_for_building_tag("#{self.name}_#{key}")
         }
         
       end
