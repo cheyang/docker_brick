@@ -4,6 +4,8 @@ module Brick
   module Models
     class Service
       
+      include ::Brick::Mixin::Colors
+      
       attr_accessor :client, :name, :links, :service_config_hash, :container, :volumes_from, :image, :image_name
       
       def initialize(name, config, client)
@@ -149,7 +151,7 @@ module Brick
       
       
       def attach
-        container.attach(:stdin => STDIN, :tty => true){|message| print "#{message}" }
+        container.attach(:stdin => STDIN, :tty => true){|message| print "#{color_generator(name)} | #{message}" }
       end
       
       
