@@ -97,8 +97,10 @@ module Brick
       #equals to "docker run"
       def run enable_link=true, recreate=true
         
+        puts "Creating #{name} ..."
+        
         if running? and (!recreate or can_be_skipped_this_time?)
-          Brick::CLI::logger.debug "the service #{Name} is already running. exited."
+          Brick::CLI::logger.debug "the service #{name} is already running. exited."
           return
         end
         
@@ -152,6 +154,7 @@ module Brick
       
       
       def attach
+        puts "Attaching to service #{name}"
         container.attach(:stdin => STDIN, :tty => true){|message| print "#{color_generator(name)} | #{message}" }
       end
       
