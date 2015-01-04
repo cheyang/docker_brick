@@ -19,7 +19,7 @@ class Docker::Container
   end
   
   # Check if an image exists.
-    def exist?(id, opts = {}, conn = Docker.connection)
+    def self.exist?(id, opts = {}, conn = Docker.connection)
       get(id, opts, conn)
       true
     rescue Docker::Error::NotFoundError
