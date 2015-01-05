@@ -45,13 +45,39 @@ class Brick::CLI::Run < Brick::CLI
            
       detach_mode = ::Brick::Config[:detach_mode]
       
-      recreate_mode = ::Brick::Config[:recreate]
-      
       start_link_mode = ::Brick::Config[:deps]
       
       project = ::Brick::Models::Project.new(project_name,{:config_file => config_file})
       
-      project.up(detach_mode, start_link_mode, recreate_mode)
+      entrypoint = ::Brick::Config[:entrypoint]
+      
+      if @cmd_args.size > 0
+        service_name = @cmd_args[0]
+      else
+        puts "You must specify the servcie name to run"
+        exit 1
+      end
+      
+      cmd_array = @cmd_args - [@cmd_args[0]]
+      
+      
+      service = project.get_service service_name
+      
+      if cmd_array.size >0
+        service.service_config_hash["command"] = cmd_array
+      end
+      
+      unless entrypoint.nil?
+        service.service_config_hash["entrypoint"] = entrypoint.split(" ")
+      end
+      
+    
+      project.run_service(service_name,start_link_mode)
+      
+      unless detach_mode
+        service.attach
+      end
+      
       
     end
 end
