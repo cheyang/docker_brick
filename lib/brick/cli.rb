@@ -167,6 +167,8 @@ module Brick
       @name_args = parse_options(ARGV)
       @name_args.delete(command_name_words.join('-'))
       @name_args.reject! { |name_arg| command_name_words.delete(name_arg) }
+      
+      @cmd_args = cli_arguments
       Brick::Config.merge!(config)
       
       project_name = ::Brick::Config[:project]
