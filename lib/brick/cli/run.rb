@@ -79,7 +79,7 @@ class Brick::CLI::Run < Brick::CLI
         service.service_config_hash["tty"] = true
       end
       
-    
+      puts "running service #{service_name}"
       project.run_service(service_name,start_link_mode)
       
       unless detach_mode
