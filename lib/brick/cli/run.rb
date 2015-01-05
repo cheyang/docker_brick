@@ -71,6 +71,14 @@ class Brick::CLI::Run < Brick::CLI
         service.service_config_hash["entrypoint"] = entrypoint.split(" ")
       end
       
+      disable_tty=::Brick::Config[:T]
+      
+      if disable_tty
+        service.service_config_hash["tty"] = false
+      else
+        service.service_config_hash["tty"] = true
+      end
+      
     
       project.run_service(service_name,start_link_mode)
       
