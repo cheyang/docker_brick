@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install docker_brick
+    $ gem install brick
 
 ## Usage
 
