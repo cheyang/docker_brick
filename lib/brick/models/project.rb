@@ -35,7 +35,7 @@ module Brick
         
         unless @services.nil?
         
-          service = @service[name]
+          service = @services[name]
            
        end
        
