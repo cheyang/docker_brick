@@ -176,7 +176,7 @@ module Brick
       #@name_args.reject! { |name_arg| command_name_words.delete(name_arg) }
       
       if option_args.length >1
-         @cmd_args = option_args[1]
+         @cmd_args = option_args[1].split(' ')
       end
       Brick::Config.merge!(config)
       
