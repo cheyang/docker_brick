@@ -33,6 +33,9 @@ module Brick
           end
         end
         
+        
+        self.container = ::Docker::Container.get(name)
+        
       end
       
       def update_volumes_from services
@@ -115,7 +118,7 @@ module Brick
           }
         end
         
-         if recreate
+         if recreate and !container.nil?
           #if recreate is true, it will destory the old container, and create a new one
             if running?
               container.stop
