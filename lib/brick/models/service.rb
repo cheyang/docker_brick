@@ -26,15 +26,18 @@ module Brick
         end
         
         unless config["volumes_from"].nil?
-         if  config["volumes_from"].instance_of?(String)
+          if  config["volumes_from"].instance_of?(String)
             self.volumes_from= [config["volumes_from"]]
           else
             self.volumes_from= config["volumes_from"].dup
           end
         end
         
-        
-        self.container = ::Docker::Container.get(name)
+        begin
+          self.container = ::Docker::Container.get(name)
+        rescue 
+          self.container = nil
+        end
         
       end
       
@@ -47,21 +50,21 @@ module Brick
         unless volumes_from.nil?
           
           volumes_from.each {|vo|
-                           #new_volumes_from << services[vo]
-                            vo_parts = vo.split(':')
-                            
-                            #only one part
-                            if vo_parts.size == 1
-                              new_vo = "#{services[vo_parts[0]].name}:rw"
-                            else
-                              new_vo=  "#{services[vo_parts[0]].name}:#{vo_parts[1]}"
-                            end
-                            
-                            new_volumes_from<< services[vo_parts[0]]
-                            
-                            new_volumes_from_config << new_vo
-                            
-                            }
+            #new_volumes_from << services[vo]
+            vo_parts = vo.split(':')
+            
+            #only one part
+            if vo_parts.size == 1
+              new_vo = "#{services[vo_parts[0]].name}:rw"
+            else
+              new_vo=  "#{services[vo_parts[0]].name}:#{vo_parts[1]}"
+            end
+            
+            new_volumes_from<< services[vo_parts[0]]
+            
+            new_volumes_from_config << new_vo
+            
+          }
           self.volumes_from = new_volumes_from
           
           service_config_hash["volumes_from"] = new_volumes_from_config
@@ -75,29 +78,29 @@ module Brick
         
         new_links =[]
         
-         unless links.nil?
-           links.each{|link|
-                
-                link_array=link.split(':')
-                
-                #It's for getting the real service name
-                service_key = link_array[0]
-                
-                alias_name = link_array[-1]
-                
-                service_container= services[service_key]
-                
-                new_links << service_container
-                
-                new_links_config << "#{service_container.name}:#{alias_name}"
-           }
-           
-         self.links=new_links
-         
-         service_config_hash["links"] = new_links_config
-         end
+        unless links.nil?
+          links.each{|link|
+            
+            link_array=link.split(':')
+            
+            #It's for getting the real service name
+            service_key = link_array[0]
+            
+            alias_name = link_array[-1]
+            
+            service_container= services[service_key]
+            
+            new_links << service_container
+            
+            new_links_config << "#{service_container.name}:#{alias_name}"
+          }
+          
+          self.links=new_links
+          
+          service_config_hash["links"] = new_links_config
+        end
         
-         
+        
       end
       
       #equals to "docker run"
@@ -118,15 +121,15 @@ module Brick
           }
         end
         
-         if recreate and !container.nil?
+        if recreate and !container.nil?
           #if recreate is true, it will destory the old container, and create a new one
-            if running?
-              container.stop
-            end
-            container.delete(:force => true)
-            self.container=nil
-            skip_next_time
-         end
+          if running?
+            container.stop
+          end
+          container.delete(:force => true)
+          self.container=nil
+          skip_next_time
+        end
         
         if container.nil?       
           self.container = client.run @service_config_hash, name        
@@ -141,27 +144,31 @@ module Brick
       def running?
         is_running = false
         
-        unless container.nil?
-          self.container = ::Docker::Container.get(name)
+        if container.nil?
+          begin
+            self.container = ::Docker::Container.get(name)
+          rescue 
+            self.container = nil
+          end
         end
         
         unless container.nil?
-            is_running = container.is_running?
+          is_running = container.is_running?
         end
         
         is_running
       end
       
       def container_info
-         (client.get_container_by_id(container.id)).info rescue {}
+       (client.get_container_by_id(container.id)).info rescue {}
       end
       
       
       def attach
         
         thr=Thread.new{
-        puts "Attaching to service #{name}"
-        container.attach(:stdin => STDIN, :tty => true){|message| print "#{color_generator(name)} | #{message}" }
+          puts "Attaching to service #{name}"
+          container.attach(:stdin => STDIN, :tty => true){|message| print "#{color_generator(name)} | #{message}" }
         }
         
         thr.join
@@ -182,15 +189,15 @@ module Brick
       
       def build name=nil, no_cache=false, project_dir=nil
         
-         if name.nil?
+        if name.nil?
           name = self.image_name
         end
         
         if can_be_built?
-            self.image = client.build_from_dir({:image_name => name,
-                                                :no_cache => no_cache,
-                                                :project_dir=>project_dir,
-                                                :build_dir=>service_config_hash["build"]})
+          self.image = client.build_from_dir({:image_name => name,
+            :no_cache => no_cache,
+            :project_dir=>project_dir,
+            :build_dir=>service_config_hash["build"]})
         else
           Brick::CLI::logger.debug "no build defintion for #{image_build},skip it"
         end
