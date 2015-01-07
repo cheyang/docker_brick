@@ -12,7 +12,7 @@ class Brick::CLI::Run < Brick::CLI
     
   option :entrypoint, 
     :long  => "--entrypoint CMD",
-    :default => false,
+    :default => nil,
     :description => "Override the entrypoint of the image."
     
   option :deps, 
@@ -67,7 +67,7 @@ class Brick::CLI::Run < Brick::CLI
         service.service_config_hash["command"] = cmd_array
       end
       
-      unless entrypoint.instance_of? String
+      unless entrypoint.nil?
         service.service_config_hash["entrypoint"] = entrypoint.split(" ")
       end
       
