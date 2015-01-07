@@ -80,7 +80,7 @@ class Brick::CLI::Run < Brick::CLI
       end
       
       puts "running service #{service_name}"
-      project.run_service(service_name,start_link_mode)
+      service.run_service(service_name,start_link_mode)
       
       unless detach_mode
         service.attach
