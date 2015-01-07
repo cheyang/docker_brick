@@ -67,7 +67,7 @@ class Brick::CLI::Run < Brick::CLI
         service.service_config_hash["command"] = cmd_array
       end
       
-      unless entrypoint.nil?
+      unless entrypoint.instance_of? String
         service.service_config_hash["entrypoint"] = entrypoint.split(" ")
       end
       
