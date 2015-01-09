@@ -115,10 +115,16 @@ module Brick
           volumes_from.each{|vo| vo.run enable_link}
         end
         
+        config_hash = @service_config_hash.dup
+        
         if enable_link and !links.nil?
           links.each{|linked_service|
             linked_service.run enable_link
           }
+        end
+        
+        if !enable_link
+          config_hash.delete("links")
         end
         
         if recreate and !container.nil?
@@ -132,7 +138,7 @@ module Brick
         end
         
         if container.nil?       
-          self.container = client.run @service_config_hash, name        
+          self.container = client.run config_hash, name        
         else
           container.start
         end
