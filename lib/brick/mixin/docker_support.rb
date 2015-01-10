@@ -97,7 +97,7 @@ module Brick::Mixin
             option = "rw"
             
             if(Pathname.new(host_volume).relative?)
-                 host_volume = File.join(::Brick::Config[:project_dir],host_volume)
+                 host_volume = File.absolute_path(File.join(::Brick::Config[:project_dir],host_volume))
             end
             
             
@@ -107,7 +107,7 @@ module Brick::Mixin
               container_volume = vo_parts[1]
               
               if(Pathname.new(container_volume).relative?)
-                 container_volume = File.join(::Brick::Config[:project_dir],container_volume)
+                 container_volume = File.absolute_path(File.join(::Brick::Config[:project_dir],container_volume))
              end
            end
            
