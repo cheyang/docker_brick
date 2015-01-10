@@ -88,6 +88,10 @@ class Brick::CLI::Run < Brick::CLI
       puts "running service #{service_name}"
       project.run_services(service_name,start_link_mode)
       
+      unless service.running?
+        raise "#{service_name} is failed to start"
+      end
+      
       unless detach_mode
         service.attach
       end
