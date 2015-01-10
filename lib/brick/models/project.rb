@@ -107,6 +107,8 @@ module Brick
            if service.image_exist? 
              if ::Brick::Config[:rebuild]
                 to_build=true
+              else
+                puts "The image #{service.image_name} already exists!"
              end
            else
              to_build = true
