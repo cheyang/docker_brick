@@ -98,9 +98,23 @@ module Brick
       #create the service according to the service name
       def run_services(service_name, enable_link=true)
         
-        service = @services[service_name]           
+        service = @services[service_name]  
+        
+        to_build = false
         
          if service.can_be_built?
+           
+           if service.image_exist? 
+             if ::Brick::Config[:rebuild]
+                to_build=true
+             end
+           else
+             to_build = true
+           end
+           
+         end
+         
+         if to_build
            service.build nil, true, ::Brick::Config[:project_dir]
          end
         

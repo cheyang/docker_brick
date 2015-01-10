@@ -17,7 +17,7 @@ class Brick::CLI::Run < Brick::CLI
     
   option :deps, 
     :long  => "--[no-]deps",
-    :default => false,
+    :default => true,
     :boolean => true,
     :description => "[not] start linked services."
     
@@ -26,6 +26,12 @@ class Brick::CLI::Run < Brick::CLI
     :default => false,
     :boolean => true,
     :description => "Remove container after run. Ignored in detached mode."
+    
+    option :rebuild, 
+    :long  => "--rebuild",
+    :default => false,
+    :boolean => true,
+    :description => "rebuild the image template."
     
     
     option :T, 
