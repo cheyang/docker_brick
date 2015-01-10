@@ -90,13 +90,33 @@ module Brick::Mixin
           volumes.map!{|vo| 
             vo_parts = vo.split(":")
             
-            if vo_parts.size==1
-              [vo_parts[0],vo_parts[0],'rw'].join(':')
-            elsif vo_parts.size==2
-              [vo_parts[0],vo_parts[1],'rw'].join(':')
-            elsif vo_parts.size==3
-              vo
-            end  
+            container_volume = nil
+            
+            host_volume = vo_parts[0]
+            
+            option = "rw"
+            
+            if(Pathname.new(host_volume).relative?)
+                 host_volume = File.join(::Brick::Config[:project_dir],host_volume)
+            end
+            
+            
+            if vo_parts.size==1    
+              container_volume = host_volume
+            elsif vo_parts.size>=2
+              container_volume = vo_parts[1]
+              
+              if(Pathname.new(container_volume).relative?)
+                 container_volume = File.join(::Brick::Config[:project_dir],container_volume)
+             end
+           end
+           
+           if vo_parts.size==3
+             option = vo_parts[2]
+           end
+           
+            
+            [host_volume, container_volume, option].join(':')
           }
         else
           raise "the value of volumes should be an array"
