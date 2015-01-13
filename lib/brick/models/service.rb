@@ -117,11 +117,9 @@ module Brick
         if self.container.nil?
           raise "no container #{name} running, so we can't execute "
         end
-        if options[:detach]
-          self.container.exec(cmd_array, options)
-        else
-          self.container.exec(cmd_array, options){|stream, chunk| puts "#{color_generator(name)} | #{chunk}".chomp }
-        end
+        
+        self.container.exec(cmd_array, options){|stream, chunk| puts "#{color_generator(name)} | #{chunk}".chomp }
+        
       end
       
       #equals to "docker run"
