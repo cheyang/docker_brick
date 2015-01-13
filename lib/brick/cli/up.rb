@@ -18,7 +18,7 @@ class Brick::CLI::Up < Brick::CLI
     
   option :deps, 
     :long  => "--[no-]deps",
-    :default => false,
+    :default => true,
     :boolean => true,
     :description => "[not] start linked services."
     
