@@ -14,7 +14,7 @@ module Brick::Generators
      def create_root
         self.destination_root = File.expand_path(project_directory)
         empty_directory '.'
-        FileUtils.cd(destination_root)
+        FileUtils.cd(project_directory)
     end
     
     def fig_file
