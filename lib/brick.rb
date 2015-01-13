@@ -25,6 +25,8 @@ require "logger"
 
 require 'brick/monkey_patches'
 
+require 'brick/generators'
+
 
 
 
