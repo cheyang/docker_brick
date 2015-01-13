@@ -9,12 +9,9 @@ require "brick/cli/core/subcommand_loader"
 
 require 'brick/application'
 
-
-
 require 'brick/config'
 
 require 'excon'
-
 
 
 require "brick/cli__validator"
@@ -25,7 +22,7 @@ require "logger"
 
 require 'brick/monkey_patches'
 
-require 'brick/generators'
+
 
 
 

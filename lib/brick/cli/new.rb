@@ -1,4 +1,5 @@
 require 'brick/cli'
+require 'brick/generators'
 
 class Brick::CLI
   
