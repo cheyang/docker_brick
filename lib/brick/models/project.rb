@@ -72,7 +72,7 @@ module Brick
               if service.container_exist?
                 puts "Recreating #{service.name} ..."
               else
-                puts "Creating #{serivce.name} ..."
+                puts "Creating #{service.name} ..."
               end
           
               if service.can_be_built?
