@@ -1,6 +1,6 @@
 require 'mixlib/cli'
 require 'brick/application'
-require 'mixin/cli'
+require 'monkey_patches/cli'
 module Brick
   class CLI
     
@@ -163,21 +163,12 @@ module Brick
       super() 
       command_name_words = self.class.snake_case_name.split('_')
       
-      command_name_str = command_name_words.join(" ")
-      
-      full_parameter = ARGV.join(" ")
-      
-      option_args = full_parameter.split(command_name_str)
-      
-      
       # Mixlib::CLI ignores the embedded name_args
-      @name_args = parse_options(option_args[0].split(" "))
-      #@name_args.delete(command_name_words.join('-'))
+      @cmd_args = parse_options
+      @cmd_args.delete(command_name_words.join('-'))
       #@name_args.reject! { |name_arg| command_name_words.delete(name_arg) }
       
-      if option_args.length >1
-         @cmd_args = option_args[1].split(' ')
-      end
+      
       Brick::Config.merge!(config)
       
       project_name = ::Brick::Config[:project]

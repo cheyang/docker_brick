@@ -3,6 +3,7 @@ module Mixlib
     def parse_options(argv=ARGV)
       argv = argv.dup
       
+      #redefine the method from parse! to order!
       opt_parser.order!(argv)
       
 
