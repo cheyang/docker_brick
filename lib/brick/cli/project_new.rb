@@ -3,8 +3,8 @@ require 'brick/generators'
 
 class Brick::CLI
   
-  class New < Brick::CLI
-    banner 'brick new PROJECT(options)'
+  class ProjectNew < Brick::CLI
+    banner 'brick project new PROJECT(options)'
     
     def run
      
