@@ -16,9 +16,10 @@ class Brick::CLI
         exit 1
       end
       
-      project_dir=File.join(::Brick::Config[:project_dir],project_name)
       
-      Brick::Generators::NewProjectGenerator.start([project_dir])
+      working_dir = Dir.pwd
+      
+      Brick::Generators::NewProjectGenerator.start([working_dir, project_name])
     end
     
   end
