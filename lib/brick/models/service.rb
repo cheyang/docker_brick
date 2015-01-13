@@ -123,10 +123,14 @@ module Brick
       end
       
       #equals to "docker run"
-      def run enable_link=true, recreate=true
+      def run enable_link=true, recreate=true, detach_mode=false
         
         if running? and (!recreate or can_be_skipped_this_time?)
           Brick::CLI::logger.debug "the service #{name} is already running. exited."
+          unless detach_mode
+             attach
+          end
+          
           return
         end
         
@@ -139,6 +143,12 @@ module Brick
         if enable_link and !links.nil?
           links.each{|linked_service|
             linked_service.run enable_link
+            
+            unless detach_mode
+                linked_service.attach
+            else
+                puts "Service #{linked_service.name} has been started"
+            end
           }
         end
         
@@ -162,6 +172,11 @@ module Brick
           container.start
         end
         
+        unless detach_mode
+             attach
+        else
+            puts "Service #{name} has been started"
+        end
         
       end
       

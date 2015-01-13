@@ -82,13 +82,9 @@ module Brick
                 end
               end
              
-              service.run enable_link, recreate
+              service.run enable_link, recreate, detach_mode
               
-              unless detach_mode
-                service.attach
-              else
-                puts "Service #{service.name} has been started"
-              end
+              
           }
           
           Service.wait_for_deamon
