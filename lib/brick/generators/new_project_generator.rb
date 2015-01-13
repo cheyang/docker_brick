@@ -19,7 +19,7 @@ module Brick::Generators
     end
     
     def fig_file
-      copy_file "#{project_name}/fig.yml"
+      copy_file("fig.yml","#{project_name}/fig.yml")
       puts "the project is created at #{File.join(working_dir,project_name)}"
     end
     
