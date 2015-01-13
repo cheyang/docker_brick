@@ -1,5 +1,6 @@
 require 'brick/mixin'
 require 'colorize'
+require 'byebug'
 
 module Brick
   module Models
@@ -175,10 +176,10 @@ module Brick
         thr=Thread.new{
           puts "Attaching to service #{name}"
           container.attach(:stdin => STDIN, :tty => true){|message| 
+            byebug
           
-          unless message.nil or message.length == 0
             print "#{color_generator(name)} | #{message}" 
-          end
+          
           
           }
         }
