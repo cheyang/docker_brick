@@ -3,6 +3,7 @@ require "fileutils"
 
 module Brick::Generators
   class NewProjectGenerator < Thor::Group
+     include Thor::Actions
     
      argument :project_directory
      
