@@ -178,7 +178,7 @@ module Brick
           container.attach(:stdin => STDIN, :tty => true){|message| 
             
           if message.length > 0
-            print "#{color_generator(name)} | #{message}" 
+            puts "#{color_generator(name)} | #{message}".chomp
           end
           
           }
