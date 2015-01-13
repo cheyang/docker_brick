@@ -87,24 +87,12 @@ class Brick::CLI::Run < Brick::CLI
     
     
     
-    exec_option = {:detach => detach_mode, 
-                   :tty => service.service_config_hash["tty"],
-                   :stdin => STDIN,
-                   :stdout => STDOUT,
-                   :stderr => STDERR }
-                   
-    if detach_mode
-      exec_option[:stdin]=false
-      exec_option[:stdout]=false
-      exec_option[:stderr]=false
-    end
-    
     puts "running service #{service_name}"
     
     if service.running?
       puts "exec #{cmd_array} on running service #{service_name}"
       
-      service.exec cmd_array, exec_option
+      service.exec cmd_array, {:detach => detach_mode}
       
     else
       puts "start service #{service_name}"
