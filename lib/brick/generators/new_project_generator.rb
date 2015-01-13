@@ -15,13 +15,34 @@ module Brick::Generators
      def create_root
         self.destination_root = File.expand_path(working_dir)
         empty_directory(project_name)
-        FileUtils.cd(File.join(working_dir,project_name))
+        @project_root=File.join(working_dir,project_name)
+        FileUtils.cd(@project_root)
     end
     
     def fig_file
       copy_file("fig.yml","#{project_name}/fig.yml")
-      puts "the project is created at #{File.join(working_dir,project_name)}"
+      puts "the project is created at #{@project_root}"
     end
+    
+    def init_git
+      puts "Initializing git repo in #{@project_root}"
+      git :init
+      git :add => "."
+      git :commit => "-m 'Initial commit'"
+      
+    end
+    
+    private
+    
+     def git(commands={})
+        if commands.is_a?(Symbol)
+          `git #{commands}`
+        else
+          commands.each do |cmd, options|
+           `git #{cmd} #{options}`
+          end
+        end
+      end
     
   end
 end
