@@ -104,7 +104,7 @@ class Brick::CLI::Run < Brick::CLI
     if service.running?
       puts "exec #{cmd_array} on running service #{service_name}"
       
-      service.exec
+      service.exec cmd_array, exec_option
       
     else
       puts "start service #{service_name}"
