@@ -16,7 +16,7 @@ class Brick::CLI
         exit 1
       end
       
-      project_dir=::Brick::Config[:project_dir]
+      project_dir=File.join(::Brick::Config[:project_dir],project_name)
       
       Brick::Generators::NewProjectGenerator.start([project_dir])
     end
