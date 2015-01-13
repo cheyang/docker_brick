@@ -119,7 +119,7 @@ class Brick::CLI::Run < Brick::CLI
       end
     end
     
-    
+    ::Brick::Models::Service.wait_for_deamon
     
   end
 end

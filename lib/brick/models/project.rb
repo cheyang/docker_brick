@@ -91,7 +91,7 @@ module Brick
               end
           }
           
-          
+          Service.wait_for_deamon
       end
       
       

@@ -8,7 +8,16 @@ module Brick
       
       include ::Brick::Mixin::Colors
       
+      @@waiting_pool = []
+      
       attr_accessor :client, :name, :links, :service_config_hash, :container, :volumes_from, :image, :image_name
+      
+      def self.wait_for_deamon
+        @@waiting_pool.each{|thr|
+            thr.join       
+        }
+      end
+      
       
       def initialize(name, config, client)
         self.name = name
@@ -195,7 +204,8 @@ module Brick
           }
         }
         
-        thr.join
+        #thr.join
+        @@waiting_pool << thr
       end
       
       
