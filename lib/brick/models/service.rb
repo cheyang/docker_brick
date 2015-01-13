@@ -174,7 +174,13 @@ module Brick
         
         thr=Thread.new{
           puts "Attaching to service #{name}"
-          container.attach(:stdin => STDIN, :tty => true){|message| print "#{color_generator(name)} | #{message}" }
+          container.attach(:stdin => STDIN, :tty => true){|message| 
+          
+          unless message.nil or message.length == 0
+            print "#{color_generator(name)} | #{message}" 
+          end
+          
+          }
         }
         
         thr.join
