@@ -1,6 +1,6 @@
 require 'mixlib/cli'
 require 'brick/application'
-require 'monkey_patches/cli'
+require 'brick/monkey_patches/cli'
 module Brick
   class CLI
     
