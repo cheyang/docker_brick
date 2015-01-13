@@ -26,6 +26,7 @@ module Brick::Generators
     
     def init_git
       puts "Initializing git repo in #{@project_root}"
+      FileUtils.cd(@project_root)
       git :init
       git :add => "."
       git :commit => "-m 'Initial commit'"
