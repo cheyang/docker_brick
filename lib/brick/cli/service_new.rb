@@ -12,7 +12,7 @@ class Brick::CLI::ServiceNew < Brick::CLI
     option :build, 
     :long  => "--build centos",
     :default => nil,
-    :description => "the service is from built with Dockerfile from specified linux platform like redhat,centos,ubuntu. not along with"
+    :description => "the service is from built with Dockerfile from specified linux platform like redhat,centos,ubuntu. not along with image."
     
     option :image, 
     :long  => "--image redis",
