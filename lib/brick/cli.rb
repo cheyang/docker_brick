@@ -212,7 +212,7 @@ module Brick
     end
     
    def show_usage
-      stdout.puts( self.opt_parser.to_s)
+      puts( self.opt_parser.to_s)
     end
     
 #     def configure_brick
