@@ -33,6 +33,6 @@ class Brick::CLI::ServiceNew < Brick::CLI
       exit 1
     end
     
-    
+    puts banner
   end
 end
