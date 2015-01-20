@@ -8,4 +8,4 @@ gem "mixlib-cli", "~> 1.5"
 #gem 'deepstruct', '~> 0.0.7'
 gem  'mixlib-config',  '~> 2.1.0'
 gem 'colorize', '~> 0.7'
-gem 'thor', '~> 0.19.1'
+gem 'thor', '~> 0.19'
