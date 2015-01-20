@@ -4,16 +4,23 @@ module Brick::Generators
   class NewServiceGenerator < Thor::Group
      argument :working_dir
      argument :project_name
+     
+    def self.source_root
+    File.dirname(__FILE__)
+  end
       
-    def a
+    def create_a
+      puts "a"
       'a'    
     end
     
-    def b
+    def create_b
+      puts "b"
       'b'
     end
     
-    def c
+    def create_c
+      puts "c"
       'c'
     end
   end
