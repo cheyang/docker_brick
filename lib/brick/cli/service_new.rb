@@ -37,7 +37,7 @@ class Brick::CLI::ServiceNew < Brick::CLI
     
      working_dir = Dir.pwd
     
-    value=Brick::Generators::NewProjectGenerator.start([working_dir, nil])
+    value=Brick::Generators::NewServiceGenerator.start([working_dir, nil])
     byebug
     puts "value=#{value}"
   end
