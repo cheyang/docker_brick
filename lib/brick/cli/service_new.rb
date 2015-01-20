@@ -1,5 +1,5 @@
 require 'brick/cli'
-
+require 'byebug'
 class Brick::CLI::ServiceNew < Brick::CLI
   banner "brick service new PROJECT(options) --build centos --links db,redis or \
           brick service new PROJECT(options) --redis centos --links db,redis"
@@ -34,5 +34,11 @@ class Brick::CLI::ServiceNew < Brick::CLI
     end
     
     puts "hello #{banner}"
+    
+     working_dir = Dir.pwd
+    
+    value=Brick::Generators::NewProjectGenerator.start([working_dir, nil])
+    byebug
+    puts "value=#{value}"
   end
 end
