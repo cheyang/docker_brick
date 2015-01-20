@@ -1,7 +1,7 @@
 require "thor/group"
 
 module Brick::Generators
-  class NewServiceGenerator
+  class NewServiceGenerator < Thor::Group
      argument :working_dir
      argument :project_name
       
