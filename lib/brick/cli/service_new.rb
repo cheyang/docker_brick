@@ -27,7 +27,7 @@ class Brick::CLI::ServiceNew < Brick::CLI
       exit 1
     end
     
-    unless !::Brick::Config[:build].nil? and !::Brick::Config[:image].nil?
+    if !::Brick::Config[:build].nil? and !::Brick::Config[:image].nil?
        show_usage
        puts ("You must specify the way of creating service, either from build or image. You can't choose both".colorize(:red))
       exit 1
