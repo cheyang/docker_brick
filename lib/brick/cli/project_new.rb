@@ -19,7 +19,9 @@ class Brick::CLI
       
       working_dir = Dir.pwd
       
-      Brick::Generators::NewProjectGenerator.start([working_dir, project_name])
+      values = Brick::Generators::NewProjectGenerator.start([working_dir, project_name])
+      
+      puts values
     end
     
   end
