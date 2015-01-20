@@ -164,7 +164,9 @@ module Brick
       command_name_words = self.class.snake_case_name.split('_')
       
       # Mixlib::CLI ignores the embedded name_args
-      @cmd_args = parse_options
+      @cmd_args = ARGV.dup - command_name_words
+      
+      @cmd_args = parse_options @cmd_args
       @cmd_args.delete(command_name_words.join('-'))
       #@name_args.reject! { |name_arg| command_name_words.delete(name_arg) }
       
