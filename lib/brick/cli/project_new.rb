@@ -21,7 +21,7 @@ class Brick::CLI
       
       values = Brick::Generators::NewProjectGenerator.start([working_dir, project_name])
       
-      puts values
+      puts "value=#{value}"
     end
     
   end
