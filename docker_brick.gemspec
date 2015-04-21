@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'brick/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "brick"
+  spec.name          = "docker_brick"
   spec.version       = Brick::VERSION
   spec.authors       = ["cheyang"]
   spec.email         = ["cheyang@163.com"]

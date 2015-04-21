@@ -2,7 +2,7 @@ require 'monitor'
 require "docker"
 require 'json'
 require 'uri'
-
+#require 'byebug'
 module Brick
   module Docker
     
@@ -141,7 +141,14 @@ module Brick
         
         dockerfile_path = determine_dockerfile_path(dockerfile_path, project_dir)
         
-        image = ::Docker::Image.build_from_dir(dockerfile_path, {"t"=>image_name, "nocache" =>no_cache }) { |chunk| h = ::JSON.parse(chunk); puts(::URI.unescape(h.values[0])) }
+        image = ::Docker::Image.build_from_dir(dockerfile_path, {"t"=>image_name, "nocache" =>no_cache }) { 
+        |chunk| h1 = ::JSON.parse(chunk); 
+                
+                value = h1.values[0].to_s;
+                
+                puts(::URI.unescape(value)) 
+        
+        }
         
         image
       end
