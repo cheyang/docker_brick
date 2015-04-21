@@ -1,5 +1,5 @@
 require 'brick/cli'
-require 'byebug'
+#require 'byebug'
 class Brick::CLI::ServiceNew < Brick::CLI
   banner "brick service new PROJECT(options) --build centos --links db,redis or \
           brick service new PROJECT(options) --image centos --links db,redis"
