@@ -142,7 +142,7 @@ module Brick
         
         if enable_link and !links.nil?
           links.each{|linked_service|
-            linked_service.run enable_link
+            linked_service.run enable_link, recreate, detach_mode
             
             unless detach_mode
                 linked_service.attach
